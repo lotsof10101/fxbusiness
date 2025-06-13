@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Professional Portfolio</title>
+    <!-- Tailwind CSS CDN for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts - Inter for a professional look -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Custom styles to override or extend Tailwind, and ensure Inter font */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8f8f8; /* Light gray background */
+        }
+        .section-content {
+            display: none; /* Hidden by default */
+        }
+        .section-content.active {
+            display: block; /* Shown when active */
+        }
+        /* Custom scrollbar for better aesthetics */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen">
+    <!-- Header Section -->
+    <header class="bg-gradient-to-r from-blue-600 to-indigo-700 text-white shadow-lg p-4 md:p-6 sticky top-0 z-50">
+        <div class="container mx-auto flex flex-col md:flex-row justify-between items-center">
+            <h1 class="text-3xl font-bold mb-3 md:mb-0">My Portfolio</h1>
+            <nav>
+                <ul class="flex flex-wrap justify-center space-x-4 md:space-x-8">
+                    <li><a href="#home" class="nav-link text-lg hover:text-blue-200 transition duration-300 ease-in-out px-3 py-2 rounded-lg">Home</a></li>
+                    <li><a href="#about" class="nav-link text-lg hover:text-blue-200 transition duration-300 ease-in-out px-3 py-2 rounded-lg">About</a></li>
+                    <li><a href="#portfolio" class="nav-link text-lg hover:text-blue-200 transition duration-300 ease-in-out px-3 py-2 rounded-lg">Portfolio</a></li>
+                    <li><a href="#services" class="nav-link text-lg hover:text-blue-200 transition duration-300 ease-in-out px-3 py-2 rounded-lg">Services</a></li>
+                    <li><a href="#contact" class="nav-link text-lg hover:text-blue-200 transition duration-300 ease-in-out px-3 py-2 rounded-lg">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="flex-grow container mx-auto p-4 md:p-8">
+
+        <!-- Home Section -->
+        <section id="home-section" class="section-content active bg-white rounded-xl shadow-lg p-6 md:p-10 mb-8 border-t-4 border-blue-500">
+            <h2 class="text-4xl md:text-5xl font-extrabold text-gray-800 mb-4 text-center">Welcome to My Professional Portfolio</h2>
+            <p class="text-lg text-gray-600 leading-relaxed text-center mb-6">
+                I am a passionate and dedicated professional with expertise in <span class="font-semibold text-blue-600">Web Development</span>,
+                <span class="font-semibold text-blue-600">UI/UX Design</span>, and <span class="font-semibold text-blue-600">Digital Marketing</span>.
+                Explore my work and see how I can help bring your ideas to life.
+            </p>
+            <div class="flex flex-col md:flex-row items-center justify-center space-y-4 md:space-y-0 md:space-x-6">
+                <img src="https://placehold.co/150x150/CCE5FF/000000?text=Profile" alt="Profile Picture" class="rounded-full border-4 border-blue-400 shadow-xl w-32 h-32 md:w-40 md:h-40 object-cover">
+                <div class="text-center md:text-left">
+                    <p class="text-xl font-semibold text-gray-700">John Doe</p>
+                    <p class="text-md text-gray-500">Full Stack Developer & Designer</p>
+                    <a href="#contact" class="inline-block mt-4 bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg shadow-md transition duration-300 ease-in-out transform hover:scale-105">
+                        Get in Touch
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about-section" class="section-content bg-white rounded-xl shadow-lg p-6 md:p-10 mb-8 border-t-4 border-indigo-500">
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-6 text-center">About Me</h2>
+            <div class="flex flex-col md:flex-row items-center md:items-start gap-8">
+                <div class="w-full md:w-1/3 flex justify-center">
+                    <img src="https://placehold.co/250x250/FFEFCC/000000?text=About+Me" alt="About Me Picture" class="rounded-lg shadow-md w-60 h-60 object-cover border-2 border-indigo-300">
+                </div>
+                <div class="w-full md:w-2/3 text-gray-700 leading-relaxed">
+                    <p class="mb-4">
+                        Hello! My name is John Doe, and I'm a passionate and highly skilled professional with over 7 years of experience in the digital realm.
+                        My journey began with a fascination for how technology can solve real-world problems and create engaging experiences.
+                    </p>
+                    <p class="mb-4">
+                        I specialize in crafting responsive and user-friendly web applications using modern front-end frameworks like React and Vue,
+                        and building robust back-end systems with Node.js and Python. My expertise also extends to database management (SQL and NoSQL),
+                        cloud deployment, and API development.
+                    </p>
+                    <p class="mb-4">
+                        Beyond coding, I have a strong foundation in UI/UX principles, ensuring that every project I undertake is not only functional but also
+                        intuitive and visually appealing. I believe in continuous learning and always staying updated with the latest industry trends and technologies.
+                    </p>
+                    <p>
+                        When I'm not coding, you can find me exploring new design tools, contributing to open-source projects, or enjoying a good book.
+                        I'm always eager to take on new challenges and collaborate on innovative projects. Let's create something amazing together!
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Portfolio Section -->
+        <section id="portfolio-section" class="section-content bg-white rounded-xl shadow-lg p-6 md:p-10 mb-8 border-t-4 border-teal-500">
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-8 text-center">My Work</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Project 1 -->
+                <div class="bg-gray-50 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 ease-in-out overflow-hidden border border-gray-200">
+                    <img src="https://placehold.co/400x250/D2F7EE/000000?text=Project+1" alt="Project 1" class="w-full h-48 object-cover">
+                    <div class="p-5">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">E-commerce Platform Redesign</h3>
+                        <p class="text-gray-600 text-sm mb-4">
+                            A complete overhaul of an existing e-commerce site, focusing on improved user experience,
+                            modern aesthetics, and performance optimization.
+                        </p>
+                        <ul class="flex flex-wrap gap-2 mb-4">
+                            <li class="bg-teal-200 text-teal-800 text-xs px-2 py-1 rounded-full">React</li>
+                            <li class="bg-teal-200 text-teal-800 text-xs px-2 py-1 rounded-full">Node.js</li>
+                            <li class="bg-teal-200 text-teal-800 text-xs px-2 py-1 rounded-full">MongoDB</li>
+                            <li class="bg-teal-200 text-teal-800 text-xs px-2 py-1 rounded-full">Tailwind CSS</li>
+                        </ul>
+                        <a href="#" class="text-blue-600 hover:text-blue-800 font-medium text-sm">View Project &rarr;</a>
+                    </div>
+                </div>
+                <!-- Project 2 -->
+                <div class="bg-gray-50 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 ease-in-out overflow-hidden border border-gray-200">
+                    <img src="https://placehold.co/400x250/F0D2F7/000000?text=Project+2" alt="Project 2" class="w-full h-48 object-cover">
+                    <div class="p-5">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Mobile Fitness Tracker App</h3>
+                        <p class="text-gray-600 text-sm mb-4">
+                            Developed a cross-platform mobile application for tracking fitness activities,
+                            integrating with health APIs and providing data visualization.
+                        </p>
+                        <ul class="flex flex-wrap gap-2 mb-4">
+                            <li class="bg-purple-200 text-purple-800 text-xs px-2 py-1 rounded-full">React Native</li>
+                            <li class="bg-purple-200 text-purple-800 text-xs px-2 py-1 rounded-full">Firebase</li>
+                            <li class="bg-purple-200 text-purple-800 text-xs px-2 py-1 rounded-full">D3.js</li>
+                        </ul>
+                        <a href="#" class="text-blue-600 hover:text-blue-800 font-medium text-sm">View Project &rarr;</a>
+                    </div>
+                </div>
+                <!-- Project 3 -->
+                <div class="bg-gray-50 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 ease-in-out overflow-hidden border border-gray-200">
+                    <img src="https://placehold.co/400x250/D2EAF7/000000?text=Project+3" alt="Project 3" class="w-full h-48 object-cover">
+                    <div class="p-5">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">SaaS Dashboard Development</h3>
+                        <p class="text-gray-600 text-sm mb-4">
+                            Built an intuitive and robust SaaS dashboard for analytics and user management,
+                            featuring real-time data updates and custom reporting.
+                        </p>
+                        <ul class="flex flex-wrap gap-2 mb-4">
+                            <li class="bg-blue-200 text-blue-800 text-xs px-2 py-1 rounded-full">Vue.js</li>
+                            <li class="bg-blue-200 text-blue-800 text-xs px-2 py-1 rounded-full">Python (Flask)</li>
+                            <li class="bg-blue-200 text-blue-800 text-xs px-2 py-1 rounded-full">PostgreSQL</li>
+                        </ul>
+                        <a href="#" class="text-blue-600 hover:text-blue-800 font-medium text-sm">View Project &rarr;</a>
+                    </div>
+                </div>
+                 <!-- Project 4 -->
+                 <div class="bg-gray-50 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 ease-in-out overflow-hidden border border-gray-200">
+                    <img src="https://placehold.co/400x250/F7EED2/000000?text=Project+4" alt="Project 4" class="w-full h-48 object-cover">
+                    <div class="p-5">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Blog Platform with CMS</h3>
+                        <p class="text-gray-600 text-sm mb-4">
+                            Designed and developed a custom blog platform with an integrated content management system for easy publishing.
+                        </p>
+                        <ul class="flex flex-wrap gap-2 mb-4">
+                            <li class="bg-yellow-200 text-yellow-800 text-xs px-2 py-1 rounded-full">WordPress</li>
+                            <li class="bg-yellow-200 text-yellow-800 text-xs px-2 py-1 rounded-full">PHP</li>
+                            <li class="bg-yellow-200 text-yellow-800 text-xs px-2 py-1 rounded-full">MySQL</li>
+                        </ul>
+                        <a href="#" class="text-blue-600 hover:text-blue-800 font-medium text-sm">View Project &rarr;</a>
+                    </div>
+                </div>
+                 <!-- Project 5 -->
+                 <div class="bg-gray-50 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 ease-in-out overflow-hidden border border-gray-200">
+                    <img src="https://placehold.co/400x250/CCF7D2/000000?text=Project+5" alt="Project 5" class="w-full h-48 object-cover">
+                    <div class="p-5">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Interactive Data Visualization</h3>
+                        <p class="text-gray-600 text-sm mb-4">
+                            Created a series of interactive data visualizations to present complex datasets in an understandable format.
+                        </p>
+                        <ul class="flex flex-wrap gap-2 mb-4">
+                            <li class="bg-green-200 text-green-800 text-xs px-2 py-1 rounded-full">D3.js</li>
+                            <li class="bg-green-200 text-green-800 text-xs px-2 py-1 rounded-full">JavaScript</li>
+                            <li class="bg-green-200 text-green-800 text-xs px-2 py-1 rounded-full">SVG</li>
+                        </ul>
+                        <a href="#" class="text-blue-600 hover:text-blue-800 font-medium text-sm">View Project &rarr;</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section id="services-section" class="section-content bg-white rounded-xl shadow-lg p-6 md:p-10 mb-8 border-t-4 border-orange-500">
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-8 text-center">My Services</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Service 1 -->
+                <div class="bg-gray-50 rounded-lg shadow-md p-6 text-center border border-gray-200 hover:shadow-xl transition-shadow duration-300">
+                    <div class="text-blue-600 mb-4">
+                        <!-- Icon for Web Development -->
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M10 20l4-16m4 4l4 4-4 4M6 4l-4 4 4 4" />
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-3">Web Development</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        Crafting responsive, high-performance websites and web applications using modern technologies.
+                        From front-end aesthetics to robust back-end logic.
+                    </p>
+                </div>
+                <!-- Service 2 -->
+                <div class="bg-gray-50 rounded-lg shadow-md p-6 text-center border border-gray-200 hover:shadow-xl transition-shadow duration-300">
+                    <div class="text-green-600 mb-4">
+                        <!-- Icon for UI/UX Design -->
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M9.663 17h4.673M12 17v5m6.44-4.506l-1.932-2.142A.5.5 0 0014.28 15h-4.56a.5.5 0 00-.348.857L5.56 18.006m13.232-9.429l-1.932-2.142A.5.5 0 0014.28 6h-4.56a.5.5 0 00-.348.857L5.56 9.006m13.232 5.429l-1.932-2.142A.5.5 0 0014.28 12h-4.56a.5.5 0 00-.348.857L5.56 15.006" />
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-3">UI/UX Design</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        Creating intuitive, engaging, and aesthetically pleasing user interfaces and experiences.
+                        Focus on user research, wireframing, and prototyping.
+                    </p>
+                </div>
+                <!-- Service 3 -->
+                <div class="bg-gray-50 rounded-lg shadow-md p-6 text-center border border-gray-200 hover:shadow-xl transition-shadow duration-300">
+                    <div class="text-red-600 mb-4">
+                        <!-- Icon for Consulting -->
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5S19.832 5.477 21 6.253v13C19.832 18.477 18.246 18 16.5 18S13.168 18.477 12 19.253" />
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-3">Technical Consulting</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        Providing expert advice and strategic guidance on technology stacks, project planning,
+                        and system architecture to optimize your digital presence.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact-section" class="section-content bg-white rounded-xl shadow-lg p-6 md:p-10 mb-8 border-t-4 border-purple-500">
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-8 text-center">Get in Touch</h2>
+            <div class="max-w-xl mx-auto">
+                <p class="text-center text-gray-700 mb-6">
+                    Have a project in mind or just want to say hello? Feel free to reach out using the form below, or connect with me via email or social media.
+                </p>
+                <form id="contact-form" class="space-y-6">
+                    <div>
+                        <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Name</label>
+                        <input type="text" id="name" name="name" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 transition duration-150 ease-in-out" placeholder="Your Name" required>
+                    </div>
+                    <div>
+                        <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                        <input type="email" id="email" name="email" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 transition duration-150 ease-in-out" placeholder="your@example.com" required>
+                    </div>
+                    <div>
+                        <label for="message" class="block text-sm font-medium text-gray-700 mb-1">Message</label>
+                        <textarea id="message" name="message" rows="5" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 transition duration-150 ease-in-out" placeholder="Your message..." required></textarea>
+                    </div>
+                    <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg shadow-md transition duration-300 ease-in-out transform hover:scale-105">
+                        Send Message
+                    </button>
+                    <div id="form-message" class="mt-4 p-3 rounded-md text-center hidden"></div>
+                </form>
+
+                <div class="mt-10 text-center">
+                    <p class="text-lg font-semibold text-gray-800 mb-4">Find me on:</p>
+                    <div class="flex justify-center space-x-6">
+                        <a href="mailto:john.doe@example.com" class="text-gray-500 hover:text-blue-600 transition duration-300 transform hover:scale-110">
+                            <!-- Email Icon -->
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                            </svg>
+                        </a>
+                        <a href="https://linkedin.com/in/johndoe" target="_blank" class="text-gray-500 hover:text-blue-600 transition duration-300 transform hover:scale-110">
+                            <!-- LinkedIn Icon (simplified SVG) -->
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                            </svg>
+                        </a>
+                        <a href="https://github.com/johndoe" target="_blank" class="text-gray-500 hover:text-blue-600 transition duration-300 transform hover:scale-110">
+                            <!-- GitHub Icon (simplified SVG) -->
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.08-.731.084-.716.084-.716 1.192.085 1.815 1.226 1.815 1.226 1.057 1.816 2.92.833 3.61.637.109-.496.417-.833.763-1.02-.27-.272-.593-.443-.96-.443-3.067 0-6.002-1.535-6.002-6.815 0-1.507.528-2.748 1.407-3.71-.14-.272-.607-1.75.137-3.642 0 0 1.149-.371 3.754 1.426 1.09-.303 2.25-.454 3.409-.458 1.15.004 2.31.155 3.409.458 2.605-1.797 3.754-1.426 3.754-1.426.744 1.892.277 3.37.137 3.642.879.962 1.407 2.203 1.407 3.71 0 5.29-2.939 6.27-6.002 6.815.42.36.793 1.12.793 2.252v3.328c0 .319.192.694.8.576C20.562 21.82 24 17.322 24 12c0-6.627-5.373-12-12-12z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer Section -->
+    <footer class="bg-gray-800 text-white p-6 md:p-8 text-center mt-auto rounded-t-xl">
+        <div class="container mx-auto">
+            <p class="mb-2">&copy; <span id="current-year"></span> John Doe. All rights reserved.</p>
+            <p class="text-sm">Built with <span class="text-red-500">&hearts;</span> and Tailwind CSS.</p>
+        </div>
+    </footer>
+
+    <script>
+        // JavaScript for navigation and form handling
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set current year in footer
+            document.getElementById('current-year').textContent = new Date().getFullYear();
+
+            const navLinks = document.querySelectorAll('.nav-link');
+            const sections = document.querySelectorAll('.section-content');
+            const form = document.getElementById('contact-form');
+            const formMessage = document.getElementById('form-message');
+
+            /**
+             * Shows the specified section and hides all others.
+             * @param {string} targetId - The ID of the section to show (e.g., 'home-section').
+             */
+            function showSection(targetId) {
+                // Hide all sections
+                sections.forEach(section => {
+                    section.classList.remove('active');
+                });
+
+                // Show the target section
+                const targetSection = document.getElementById(targetId);
+                if (targetSection) {
+                    targetSection.classList.add('active');
+                    // Scroll to the top of the section for better UX on mobile
+                    targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            }
+
+            // Event listeners for navigation links
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(event) {
+                    event.preventDefault(); // Prevent default anchor behavior
+                    const targetHash = this.getAttribute('href'); // e.g., '#home'
+                    const targetId = targetHash.substring(1) + '-section'; // e.g., 'home-section'
+                    showSection(targetId);
+                });
+            });
+
+            // Handle initial section display based on URL hash or default to home
+            function handleInitialSection() {
+                const initialHash = window.location.hash;
+                if (initialHash) {
+                    const targetId = initialHash.substring(1) + '-section';
+                    const targetSection = document.getElementById(targetId);
+                    if (targetSection) {
+                        showSection(targetId);
+                    } else {
+                        // If hash doesn't match a valid section, default to home
+                        showSection('home-section');
+                    }
+                } else {
+                    showSection('home-section'); // Default to home section if no hash
+                }
+            }
+
+            // Call on page load
+            handleInitialSection();
+
+            // Handle form submission
+            form.addEventListener('submit', function(event) {
+                event.preventDefault(); // Prevent actual form submission
+
+                // Simulate form submission
+                const name = document.getElementById('name').value;
+                const email = document.getElementById('email').value;
+                const message = document.getElementById('message').value;
+
+                console.log('Form Submitted!');
+                console.log('Name:', name);
+                console.log('Email:', email);
+                console.log('Message:', message);
+
+                // Display a success message
+                formMessage.classList.remove('hidden');
+                formMessage.classList.add('bg-green-100', 'text-green-700');
+                formMessage.textContent = 'Thank you for your message, ' + name + '! I will get back to you soon.';
+
+                // Clear the form fields
+                form.reset();
+
+                // Hide the message after a few seconds
+                setTimeout(() => {
+                    formMessage.classList.add('hidden');
+                    formMessage.classList.remove('bg-green-100', 'text-green-700');
+                }, 5000);
+            });
+        });
+    </script>
+</body>
+</html>
