@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Forex Trading Pro - Unlock Your Potential</title>
+    <title>ForexPro - Your Gateway to Financial Growth</title>
     <!-- Tailwind CSS CDN for styling -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Google Fonts - Inter for a professional look -->
@@ -11,46 +11,66 @@
     <!-- D3.js for charts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
     <style>
-        /* Custom styles to override or extend Tailwind, and ensure Inter font */
+        /* Base styles using REM units for better scalability and dark theme */
+        :root {
+            --color-dark-bg: #1A1A2E; /* Primary dark background */
+            --color-card-bg: #2A2A4A; /* Card/section background */
+            --color-border: #404060; /* Subtle border for elements */
+            --color-text-light: #E0E0E0; /* Light text for readability */
+            --color-text-dim: #A0A0A0; /* Dimmed text for secondary info */
+            --color-accent-green: #4CAF50; /* Green for positive action/growth */
+            --color-accent-blue: #3B82F6; /* Blue for primary interactions */
+            --spacing-unit: 4px; /* Base spacing unit for consistency */
+        }
+
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #1a1a2e; /* Dark background */
-            color: #e0e0e0; /* Light text color */
+            background-color: var(--color-dark-bg);
+            color: var(--color-text-light);
+            line-height: 1.6;
         }
+
+        /* Section visibility and fade-in effect for dynamic feel */
         .section-content {
-            display: none; /* Hidden by default */
-            animation: fadeIn 0.5s ease-out forwards; /* Fade in animation */
+            display: none;
+            animation: fadeIn 0.6s ease-out forwards;
+            padding: calc(var(--spacing-unit) * 12) calc(var(--spacing-unit) * 8); /* Generous padding */
+            margin-bottom: calc(var(--spacing-unit) * 8); /* Generous bottom margin */
+            border-radius: 1rem; /* Consistent rounded corners */
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2), 0 4px 6px -2px rgba(0, 0, 0, 0.1); /* Deeper shadow for dark theme */
         }
         .section-content.active {
-            display: block; /* Shown when active */
+            display: block;
         }
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
-        /* Custom scrollbar for better aesthetics on dark theme */
+
+        /* Custom scrollbar for dark theme */
         ::-webkit-scrollbar {
-            width: 8px;
+            width: calc(var(--spacing-unit) * 2); /* 8px */
         }
         ::-webkit-scrollbar-track {
-            background: #2a2a4a; /* Darker track */
+            background: var(--color-card-bg);
         }
         ::-webkit-scrollbar-thumb {
-            background: #5c5c8a; /* Accent thumb */
-            border-radius: 4px;
+            background: var(--color-border);
+            border-radius: calc(var(--spacing-unit)); /* 4px */
         }
         ::-webkit-scrollbar-thumb:hover {
-            background: #7a7ab3; /* Lighter accent on hover */
+            background: #5A5A7A; /* Slightly lighter on hover */
         }
-        /* Chart specific styles */
+
+        /* Chart specific styles - ensuring responsiveness */
         .chart-container {
-            position: relative;
             width: 100%;
-            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
-            height: 0;
-            overflow: hidden;
-            background-color: #2a2a4a;
-            border-radius: 0.75rem; /* rounded-xl */
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio for responsiveness */
+            position: relative;
+            background-color: #1a1a2e;
+            border-radius: 0.75rem;
+            overflow: hidden; /* Important for clean edges */
+            border: 1px solid var(--color-border); /* Subtle border */
         }
         .chart-svg {
             position: absolute;
@@ -61,112 +81,134 @@
         }
         .line {
             fill: none;
-            stroke: #4CAF50; /* Green for bullish trend */
+            stroke: var(--color-accent-green);
             stroke-width: 2px;
         }
         .area {
             fill: url(#area-gradient);
-            opacity: 0.7;
+            opacity: 0.6;
         }
         .axis text {
-            fill: #a0a0a0;
-            font-size: 0.875rem; /* text-sm */
+            fill: var(--color-text-dim);
+            font-size: 0.75rem; /* text-xs */
         }
         .axis path, .axis line {
-            stroke: #404040;
+            stroke: var(--color-border);
         }
 
-        /* Call to Action Button specific styles for glow effect */
+        /* Call to Action Button with subtle glow */
         .cta-button {
             position: relative;
             overflow: hidden;
-            z-index: 1;
+            transition: all 0.3s ease-in-out;
+            border-radius: 9999px; /* Fully rounded */
+            padding: calc(var(--spacing-unit) * 4) calc(var(--spacing-unit) * 8); /* Generous padding */
+            font-size: 1.25rem; /* text-xl */
+            font-weight: 700; /* font-bold */
         }
         .cta-button::before {
             content: '';
             position: absolute;
             top: 50%;
             left: 50%;
-            width: 300%;
-            height: 300%;
-            background: radial-gradient(circle, rgba(76,175,80,0.5) 0%, rgba(29,78,216,0) 70%);
+            width: 0;
+            height: 0;
+            background: radial-gradient(circle, rgba(76,175,80,0.4) 0%, rgba(29,78,216,0) 70%); /* Green to transparent radial gradient */
             transition: all 0.7s ease-out;
             border-radius: 50%;
             z-index: -1;
-            transform: translate(-50%, -50%) scale(0);
             opacity: 0;
+            transform: translate(-50%, -50%); /* Center the pseudo-element */
         }
         .cta-button:hover::before {
-            transform: translate(-50%, -50%) scale(1);
+            width: 300%;
+            height: 300%;
             opacity: 1;
         }
+        .cta-button:hover {
+            transform: translateY(-2px); /* Slight lift on hover */
+            box-shadow: 0 8px 15px rgba(var(--color-accent-green-rgb), 0.3); /* Subtle glow effect */
+        }
+
+        /* Animation for Hero Headline */
+        .animate-pulse-fade {
+            animation: pulseFade 2s infinite alternate;
+        }
+        @keyframes pulseFade {
+            0% { opacity: 0.8; transform: scale(1); }
+            100% { opacity: 1; transform: scale(1.01); }
+        }
+
+        /* Explicitly define RGB for JS usage if needed for dynamic glow, etc. */
+        .text-green-600 { --color-accent-green-rgb: 76,175,80; }
     </style>
 </head>
 <body class="flex flex-col min-h-screen">
     <!-- Header Section -->
-    <header class="bg-gradient-to-r from-blue-900 to-indigo-900 text-white shadow-xl p-4 md:p-6 sticky top-0 z-50">
-        <div class="container mx-auto flex flex-col md:flex-row justify-between items-center">
-            <h1 class="text-3xl font-extrabold mb-3 md:mb-0 tracking-wide">ForexPro</h1>
+    <header class="bg-gradient-to-r from-blue-950 to-indigo-950 text-white shadow-xl py-4 md:py-6 sticky top-0 z-50">
+        <div class="container mx-auto flex flex-col md:flex-row justify-between items-center px-4 md:px-8">
+            <h1 class="text-3xl md:text-4xl font-extrabold mb-3 md:mb-0 tracking-wide text-white">ForexPro</h1>
             <nav>
-                <ul class="flex flex-wrap justify-center space-x-4 md:space-x-8">
-                    <li><a href="#about-forex" class="nav-link text-lg font-medium hover:text-blue-300 transition duration-300 ease-in-out px-3 py-2 rounded-lg">About Forex</a></li>
-                    <li><a href="#requirements" class="nav-link text-lg font-medium hover:text-blue-300 transition duration-300 ease-in-out px-3 py-2 rounded-lg">Requirements</a></li>
-                    <li><a href="#how-to-trade" class="nav-link text-lg font-medium hover:text-blue-300 transition duration-300 ease-in-out px-3 py-2 rounded-lg">How to Trade</a></li>
-                    <li><a href="#forex-copy" class="nav-link text-lg font-medium hover:text-blue-300 transition duration-300 ease-in-out px-3 py-2 rounded-lg">ForexCopy</a></li>
-                    <li><a href="#contact" class="nav-link text-lg font-medium hover:text-blue-300 transition duration-300 ease-in-out px-3 py-2 rounded-lg">Contact</a></li>
+                <ul class="flex flex-wrap justify-center space-x-4 md:space-x-8 text-sm md:text-lg">
+                    <li><a href="#hero" class="nav-link font-medium hover:text-blue-300 transition duration-300 ease-in-out px-3 py-2 rounded-lg">Home</a></li>
+                    <li><a href="#about-forex-trade" class="nav-link font-medium hover:text-blue-300 transition duration-300 ease-in-out px-3 py-2 rounded-lg">About Forex</a></li>
+                    <li><a href="#account-requirements" class="nav-link font-medium hover:text-blue-300 transition duration-300 ease-in-out px-3 py-2 rounded-lg">Requirements</a></li>
+                    <li><a href="#how-to-trade" class="nav-link font-medium hover:text-blue-300 transition duration-300 ease-in-out px-3 py-2 rounded-lg">How to Trade</a></li>
+                    <li><a href="#forex-copy" class="nav-link font-medium hover:text-blue-300 transition duration-300 ease-in-out px-3 py-2 rounded-lg">ForexCopy</a></li>
+                    <li><a href="#contact" class="nav-link font-medium hover:text-blue-300 transition duration-300 ease-in-out px-3 py-2 rounded-lg">Contact</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
     <!-- Main Content Area -->
-    <main class="flex-grow container mx-auto p-4 md:p-8">
+    <main class="flex-grow container mx-auto px-4 md:px-8 py-8 md:py-12">
 
-        <!-- Hero Section - Designed for high impact and call to action -->
-        <section id="home-section" class="section-content active bg-gradient-to-br from-gray-900 to-black rounded-xl shadow-2xl p-6 md:p-12 mb-8 border-t-4 border-green-500 text-center">
+        <!-- Hero Section - High Impact & Call to Action -->
+        <section id="hero-section" class="section-content active bg-gradient-to-br from-gray-900 to-black text-center border-t-4 border-green-600">
             <h2 class="text-4xl md:text-6xl font-extrabold text-white mb-6 leading-tight tracking-tight animate-pulse-fade">
-                Unlock Your Financial Freedom Through Forex Trading
+                Unlock Your Financial Edge in the Forex Market
             </h2>
-            <p class="text-lg md:text-xl text-gray-300 leading-relaxed max-w-3xl mx-auto mb-8">
-                Join thousands of successful traders who are leveraging the world's largest financial market.
-                Discover the power of currency exchange and transform your future.
+            <p class="text-base md:text-xl text-gray-300 leading-relaxed max-w-3xl mx-auto mb-10">
+                Seamlessly enter the world's most dynamic financial market. Discover strategies, amplify gains, and secure your financial future.
+                Start your journey to trading mastery today.
             </p>
-            <a href="YOUR_AFFILIATE_LINK_HERE" target="_blank" class="cta-button inline-block bg-green-600 hover:bg-green-700 text-white font-bold py-4 px-10 rounded-full shadow-lg transition duration-300 ease-in-out transform hover:scale-105 text-xl relative overflow-hidden group">
-                Start Trading Today!
-                <span class="absolute right-4 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <!-- Right Arrow Icon -->
+            <a href="YOUR_AFFILIATE_LINK_HERE" target="_blank" class="cta-button inline-block bg-green-600 text-white shadow-xl transform hover:scale-105">
+                Join Now & Start Trading!
+                <span class="ml-3 inline-block">
+                    <!-- Arrow Right SVG for visual engagement -->
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
                     </svg>
                 </span>
             </a>
-            <p class="text-sm text-gray-500 mt-6">
-                *Risk Warning: Trading leveraged products such as Forex and CFDs carries a high level of risk.
+            <p class="text-xs md:text-sm text-gray-500 mt-8">
+                *Risk Warning: Trading leveraged products carries significant risk and may not be suitable for all investors.
             </p>
         </section>
 
         <!-- About Forex Trade Section -->
-        <section id="about-forex-section" class="section-content bg-gray-800 rounded-xl shadow-xl p-6 md:p-10 mb-8 border-t-4 border-blue-500">
-            <h2 class="text-3xl md:text-4xl font-bold text-white mb-6 text-center">About Forex Trading</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-                <div class="text-gray-300 leading-relaxed">
+        <section id="about-forex-trade-section" class="section-content bg-gray-800 border-t-4 border-blue-600">
+            <h2 class="text-3xl md:text-4xl font-bold text-white mb-8 text-center">About Forex Trading</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8 items-center">
+                <div class="text-gray-300 text-base md:text-lg leading-relaxed">
                     <p class="mb-4">
-                        Forex, or Foreign Exchange, is the global marketplace for exchanging national currencies.
-                        It is the largest and most liquid market in the world, with trillions of dollars traded daily.
-                        This immense volume provides unparalleled opportunities for traders to profit from currency fluctuations.
+                        Forex, or Foreign Exchange, represents the global marketplace where national currencies are traded.
+                        It stands as the largest and most liquid market worldwide, facilitating trillions of dollars in daily transactions.
+                        This unparalleled liquidity creates vast opportunities for traders to capitalize on currency value fluctuations.
                     </p>
                     <p class="mb-4">
-                        Unlike traditional stock markets, Forex operates 24 hours a day, five days a week,
-                        offering flexibility and constant access to global financial events.
-                        Whether you are a beginner or an experienced investor, Forex offers diverse strategies
-                        to capitalize on economic trends, political shifts, and interest rate differentials.
+                        Operating 24 hours a day, five days a week, the Forex market offers exceptional flexibility,
+                        allowing traders to react to global financial and political events in real-time.
+                        Whether you are beginning your trading journey or are an experienced investor,
+                        Forex provides diverse strategies to leverage economic shifts and interest rate differentials.
                     </p>
-                    <p class="mb-4">
-                        Understanding the basics of currency pairs, leverage, and risk management is crucial.
-                        We provide comprehensive resources to help you navigate this dynamic market effectively.
+                    <p>
+                        A foundational understanding of currency pairs, leverage mechanisms, and robust risk management
+                        is essential for success. Our resources are designed to guide you through this complex yet rewarding market.
                     </p>
-                    <a href="YOUR_AFFILIATE_LINK_HERE" target="_blank" class="inline-block mt-4 bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-6 rounded-lg shadow-md transition duration-300 ease-in-out transform hover:scale-105">
-                        Learn More & Open Account
+                    <a href="YOUR_AFFILIATE_LINK_HERE" target="_blank" class="inline-block mt-8 bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg shadow-md transition duration-300 ease-in-out transform hover:scale-105 text-base md:text-lg">
+                        Explore Trading Opportunities
                     </a>
                 </div>
                 <div class="chart-container">
@@ -176,170 +218,185 @@
         </section>
 
         <!-- Account Open Requirement Section -->
-        <section id="requirements-section" class="section-content bg-gray-800 rounded-xl shadow-xl p-6 md:p-10 mb-8 border-t-4 border-indigo-500">
-            <h2 class="text-3xl md:text-4xl font-bold text-white mb-8 text-center">Account Opening Requirements</h2>
-            <div class="max-w-3xl mx-auto bg-gray-900 p-8 rounded-lg shadow-inner border border-gray-700">
-                <p class="text-gray-300 mb-6 text-center text-lg">
-                    Opening a Forex trading account is a straightforward process designed to ensure security and compliance.
-                    Here are the typical requirements to get started:
+        <section id="account-requirements-section" class="section-content bg-gray-800 border-t-4 border-indigo-600">
+            <h2 class="text-3xl md:text-4xl font-bold text-white mb-10 text-center">Your Path to Trading: Requirements</h2>
+            <div class="max-w-3xl mx-auto bg-gray-900 p-8 md:p-12 rounded-lg shadow-inner border border-gray-700">
+                <p class="text-gray-300 mb-8 text-center text-base md:text-lg">
+                    Opening your Forex trading account is a seamless process, structured to ensure both security and regulatory compliance.
+                    Below are the standard requirements to begin your trading journey:
                 </p>
-                <ul class="list-disc list-inside space-y-4 text-gray-300 text-lg">
+                <ul class="list-none space-y-6 text-gray-300 text-base md:text-lg">
                     <li class="flex items-start">
-                        <span class="mr-2 text-green-400">&#10003;</span>
-                        <span class="font-semibold text-white">Identification Document:</span> A valid government-issued ID (Passport, National ID Card, Driver's License).
+                        <span class="mr-4 text-green-400 text-xl">&#10003;</span>
+                        <div>
+                            <span class="font-semibold text-white">Valid Identification:</span>
+                            A current government-issued photo ID (e.g., Passport, National ID, Driver's License).
+                        </div>
                     </li>
                     <li class="flex items-start">
-                        <span class="mr-2 text-green-400">&#10003;</span>
-                        <span class="font-semibold text-white">Proof of Residence:</span> A recent utility bill (electricity, water, gas) or bank statement (issued within the last 3 months) showing your address.
+                        <span class="mr-4 text-green-400 text-xl">&#10003;</span>
+                        <div>
+                            <span class="font-semibold text-white">Proof of Residence:</span>
+                            A recent utility bill or bank statement (dated within 3 months) verifying your address.
+                        </div>
                     </li>
                     <li class="flex items-start">
-                        <span class="mr-2 text-green-400">&#10003;</span>
-                        <span class="font-semibold text-white">Minimum Deposit:</span> Most brokers require a minimum initial deposit, which can range from $100 to $1,000 depending on the account type.
+                        <span class="mr-4 text-green-400 text-xl">&#10003;</span>
+                        <div>
+                            <span class="font-semibold text-white">Minimum Deposit:</span>
+                            A starting capital, typically ranging from $100 to $1,000, varying by account type and broker.
+                        </div>
                     </li>
                     <li class="flex items-start">
-                        <span class="mr-2 text-green-400">&#10003;</span>
-                        <span class="font-semibold text-white">Completed Application Form:</span> Fill out the online application form with accurate personal and financial details.
+                        <span class="mr-4 text-green-400 text-xl">&#10003;</span>
+                        <div>
+                            <span class="font-semibold text-white">Application Form:</span>
+                            A fully completed online application form with accurate personal and financial details.
+                        </div>
                     </li>
                     <li class="flex items-start">
-                        <span class="mr-2 text-green-400">&#10003;</span>
-                        <span class="font-semibold text-white">Risk Disclosure Agreement:</span> Acknowledgment and acceptance of the risks involved in Forex trading.
+                        <span class="mr-4 text-green-400 text-xl">&#10003;</span>
+                        <div>
+                            <span class="font-semibold text-white">Risk Acknowledgment:</span>
+                            Understanding and accepting the inherent risks associated with Forex trading.
+                        </div>
                     </li>
                 </ul>
-                <div class="text-center mt-10">
-                    <a href="YOUR_AFFILIATE_LINK_HERE" target="_blank" class="cta-button inline-block bg-green-600 hover:bg-green-700 text-white font-bold py-4 px-10 rounded-full shadow-lg transition duration-300 ease-in-out transform hover:scale-105 text-xl">
-                        Apply Now!
+                <div class="text-center mt-12">
+                    <a href="YOUR_AFFILIATE_LINK_HERE" target="_blank" class="cta-button inline-block bg-green-600 text-white shadow-xl transform hover:scale-105">
+                        Begin Your Application!
                     </a>
                 </div>
             </div>
         </section>
 
         <!-- How to Trade Section -->
-        <section id="how-to-trade-section" class="section-content bg-gray-800 rounded-xl shadow-xl p-6 md:p-10 mb-8 border-t-4 border-teal-500">
-            <h2 class="text-3xl md:text-4xl font-bold text-white mb-8 text-center">How to Trade Forex</h2>
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 text-center">
-                <div class="bg-gray-900 p-6 rounded-lg shadow-md border border-gray-700 hover:shadow-xl transition-shadow duration-300">
-                    <div class="text-teal-400 mb-4">
-                        <!-- Research & Analysis Icon -->
+        <section id="how-to-trade-section" class="section-content bg-gray-800 border-t-4 border-teal-600">
+            <h2 class="text-3xl md:text-4xl font-bold text-white mb-10 text-center">Mastering Forex: Simple Steps</h2>
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 md:gap-12 text-center">
+                <div class="bg-gray-900 p-6 md:p-8 rounded-lg shadow-md border border-gray-700 hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-1">
+                    <div class="text-teal-400 mb-6">
+                        <!-- Research & Analyze Icon -->
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M9 19V6l12-3v13m-6 3H9m12 0h3v-8l-3-1v9zm-3 2c-.392 0-.674-.188-.868-.314-.143-.097-.245-.251-.314-.465-.078-.242-.118-.518-.118-.865V9.006c0-1.745-.078-3.084-.118-3.376-.07-.406-.183-.755-.314-.868-.194-.126-.476-.314-.868-.314s-.674.188-.868.314c-.143.097-.245.251-.314.465-.078.242-.118.518-.118.865V18m0-12H9m12 0h3v-8l-3-1v9zm-3 2c-.392 0-.674-.188-.868-.314-.143-.097-.245-.251-.314-.465-.078-.242-.118-.518-.118-.865V9.006c0-1.745-.078-3.084-.118-3.376-.07-.406-.183-.755-.314-.868-.194-.126-.476-.314-.868-.314s-.674.188-.868.314c-.143.097-.245.251-.314.465-.078.242-.118.518-.118.865V18" />
                         </svg>
                     </div>
                     <h3 class="text-2xl font-semibold text-white mb-3">1. Research & Analyze</h3>
-                    <p class="text-gray-400 leading-relaxed">
-                        Understand market trends, economic indicators, and geopolitical events.
-                        Utilize technical and fundamental analysis to make informed decisions.
+                    <p class="text-gray-400 leading-relaxed text-sm md:text-base">
+                        Dive deep into market trends, economic indicators, and global news.
+                        Master technical and fundamental analysis to forge winning decisions.
                     </p>
                 </div>
-                <div class="bg-gray-900 p-6 rounded-lg shadow-md border border-gray-700 hover:shadow-xl transition-shadow duration-300">
-                    <div class="text-yellow-400 mb-4">
+                <div class="bg-gray-900 p-6 md:p-8 rounded-lg shadow-md border border-gray-700 hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-1">
+                    <div class="text-yellow-400 mb-6">
                         <!-- Plan Your Trade Icon -->
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
                         </svg>
                     </div>
                     <h3 class="text-2xl font-semibold text-white mb-3">2. Plan Your Trade</h3>
-                    <p class="text-gray-400 leading-relaxed">
-                        Define your entry and exit points, set stop-loss and take-profit levels.
-                        Develop a robust trading strategy based on your risk tolerance.
+                    <p class="text-gray-400 leading-relaxed text-sm md:text-base">
+                        Clearly define your entry/exit points, and set stop-loss/take-profit levels.
+                        Craft a resilient trading strategy tailored to your risk appetite.
                     </p>
                 </div>
-                <div class="bg-gray-900 p-6 rounded-lg shadow-md border border-gray-700 hover:shadow-xl transition-shadow duration-300">
-                    <div class="text-red-400 mb-4">
+                <div class="bg-gray-900 p-6 md:p-8 rounded-lg shadow-md border border-gray-700 hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-1">
+                    <div class="text-red-400 mb-6">
                         <!-- Execute & Manage Icon -->
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
                         </svg>
                     </div>
                     <h3 class="text-2xl font-semibold text-white mb-3">3. Execute & Manage</h3>
-                    <p class="text-gray-400 leading-relaxed">
-                        Place your orders with confidence. Continuously monitor your trades and
-                        adjust your strategy as market conditions evolve.
+                    <p class="text-gray-400 leading-relaxed text-sm md:text-base">
+                        Place your orders with precision. Continuously monitor positions and
+                        adapt your strategy as market conditions dynamically evolve.
                     </p>
                 </div>
             </div>
             <div class="text-center mt-12">
-                <a href="YOUR_AFFILIATE_LINK_HERE" target="_blank" class="cta-button inline-block bg-green-600 hover:bg-green-700 text-white font-bold py-4 px-10 rounded-full shadow-lg transition duration-300 ease-in-out transform hover:scale-105 text-xl">
-                    Practice with a Demo Account
+                <a href="YOUR_AFFILIATE_LINK_HERE" target="_blank" class="cta-button inline-block bg-green-600 text-white shadow-xl transform hover:scale-105">
+                    Practice with a Free Demo Account!
                 </a>
             </div>
         </section>
 
         <!-- ForexCopy Section -->
-        <section id="forex-copy-section" class="section-content bg-gray-800 rounded-xl shadow-xl p-6 md:p-10 mb-8 border-t-4 border-orange-500">
-            <h2 class="text-3xl md:text-4xl font-bold text-white mb-8 text-center">ForexCopy: Amplify Your Profits</h2>
-            <div class="max-w-4xl mx-auto flex flex-col md:flex-row items-center gap-8">
-                <div class="md:w-1/2 text-gray-300 leading-relaxed">
-                    <p class="mb-4 text-lg">
-                        New to Forex or lack the time to trade actively? ForexCopy (also known as copy trading)
-                        allows you to automatically replicate the trades of experienced and successful traders.
-                        It's an innovative way to participate in the Forex market without needing in-depth knowledge or constant monitoring.
+        <section id="forex-copy-section" class="section-content bg-gray-800 border-t-4 border-orange-600">
+            <h2 class="text-3xl md:text-4xl font-bold text-white mb-10 text-center">ForexCopy: Smart Growth, Simplified</h2>
+            <div class="max-w-4xl mx-auto flex flex-col md:flex-row items-center gap-8 md:gap-12">
+                <div class="md:w-1/2 text-gray-300 text-base md:text-lg leading-relaxed">
+                    <p class="mb-6">
+                        New to Forex or short on time? ForexCopy, also known as copy trading, empowers you to
+                        automatically mirror the trades of proven, successful traders.
+                        It's an intelligent solution to engage with the Forex market without constant personal monitoring or deep analytical knowledge.
                     </p>
-                    <p class="mb-4 text-lg">
-                        Simply choose a skilled trader, allocate funds, and their trades will be mirrored in your account.
-                        You maintain full control and can stop copying at any time. This offers a fantastic opportunity
-                        to learn from the best and potentially earn significant returns.
+                    <p class="mb-6">
+                        Select a top-performing trader, allocate your desired capital, and their expert trades will be seamlessly replicated in your account.
+                        You retain absolute control over your funds and can cease copying at any moment.
+                        This mechanism provides an unparalleled opportunity to learn from the best and unlock significant returns.
                     </p>
-                    <ul class="list-disc list-inside space-y-2 mb-6 text-gray-300">
-                        <li class="flex items-start"><span class="mr-2 text-green-400">&#10003;</span>Passive Income Potential</li>
-                        <li class="flex items-start"><span class="mr-2 text-green-400">&#10003;</span>Learn from Experts</li>
-                        <li class="flex items-start"><span class="mr-2 text-green-400">&#10003;</span>Full Control Over Your Funds</li>
-                        <li class="flex items-start"><span class="mr-2 text-green-400">&#10003;</span>No Prior Trading Experience Needed</li>
+                    <ul class="list-none space-y-3 mb-8 text-gray-300">
+                        <li class="flex items-start"><span class="mr-3 text-green-400 text-xl">&#10003;</span>Passive Income Potential</li>
+                        <li class="flex items-start"><span class="mr-3 text-green-400 text-xl">&#10003;</span>Learn from Verified Experts</li>
+                        <li class="flex items-start"><span class="mr-3 text-green-400 text-xl">&#10003;</span>Full Control Over Capital</li>
+                        <li class="flex items-start"><span class="mr-3 text-green-400 text-xl">&#10003;</span>Zero Prior Experience Required</li>
                     </ul>
-                    <a href="YOUR_AFFILIATE_LINK_HERE" target="_blank" class="cta-button inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-lg shadow-md transition duration-300 ease-in-out transform hover:scale-105">
-                        Discover Top Traders!
+                    <a href="YOUR_AFFILIATE_LINK_HERE" target="_blank" class="cta-button inline-block bg-blue-600 text-white shadow-xl transform hover:scale-105">
+                        Start Copy Trading!
                     </a>
                 </div>
                 <div class="md:w-1/2 flex justify-center">
-                    <img src="https://placehold.co/400x300/FFAC42/000000?text=ForexCopy+Concept" alt="ForexCopy Illustration" class="rounded-lg shadow-xl border-2 border-orange-400">
+                    <img src="https://placehold.co/400x300/FFAC42/000000?text=ForexCopy+Concept" alt="ForexCopy Illustration" class="rounded-lg shadow-xl border-2 border-orange-400 max-w-full h-auto">
                 </div>
             </div>
         </section>
 
         <!-- Contact Section -->
-        <section id="contact-section" class="section-content bg-gray-800 rounded-xl shadow-xl p-6 md:p-10 mb-8 border-t-4 border-purple-500">
-            <h2 class="text-3xl md:text-4xl font-bold text-white mb-8 text-center">Get in Touch</h2>
+        <section id="contact-section" class="section-content bg-gray-800 border-t-4 border-purple-600">
+            <h2 class="text-3xl md:text-4xl font-bold text-white mb-10 text-center">Connect With Us</h2>
             <div class="max-w-xl mx-auto">
-                <p class="text-center text-gray-300 mb-6">
-                    Have questions about Forex trading, our services, or anything else? Feel free to reach out.
-                    We're here to help you on your trading journey.
+                <p class="text-center text-gray-300 mb-8 text-base md:text-lg">
+                    Have questions, need guidance, or wish to discuss trading opportunities? Reach out using the form below,
+                    or connect with us via email or social media. Your trading success is our priority.
                 </p>
                 <form id="contact-form" class="space-y-6">
                     <div>
                         <label for="name" class="block text-sm font-medium text-gray-300 mb-1">Name</label>
-                        <input type="text" id="name" name="name" class="mt-1 block w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-md shadow-sm text-white focus:ring-blue-500 focus:border-blue-500 transition duration-150 ease-in-out" placeholder="Your Name" required>
+                        <input type="text" id="name" name="name" class="block w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-md shadow-sm text-white placeholder-gray-400 focus:ring-blue-500 focus:border-blue-500 transition duration-150 ease-in-out" placeholder="Your Full Name" required>
                     </div>
                     <div>
                         <label for="email" class="block text-sm font-medium text-gray-300 mb-1">Email</label>
-                        <input type="email" id="email" name="email" class="mt-1 block w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-md shadow-sm text-white focus:ring-blue-500 focus:border-blue-500 transition duration-150 ease-in-out" placeholder="your@example.com" required>
+                        <input type="email" id="email" name="email" class="block w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-md shadow-sm text-white placeholder-gray-400 focus:ring-blue-500 focus:border-blue-500 transition duration-150 ease-in-out" placeholder="your@example.com" required>
                     </div>
                     <div>
                         <label for="message" class="block text-sm font-medium text-gray-300 mb-1">Message</label>
-                        <textarea id="message" name="message" rows="5" class="mt-1 block w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-md shadow-sm text-white focus:ring-blue-500 focus:border-blue-500 transition duration-150 ease-in-out" placeholder="Your message..." required></textarea>
+                        <textarea id="message" name="message" rows="5" class="block w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-md shadow-sm text-white placeholder-gray-400 focus:ring-blue-500 focus:border-blue-500 transition duration-150 ease-in-out" placeholder="Your inquiry or message..." required></textarea>
                     </div>
-                    <button type="submit" class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-lg shadow-md transition duration-300 ease-in-out transform hover:scale-105">
-                        Send Message
+                    <button type="submit" class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-lg shadow-md transition duration-300 ease-in-out transform hover:scale-105 text-base md:text-lg">
+                        Send Your Message
                     </button>
                     <div id="form-message" class="mt-4 p-3 rounded-md text-center hidden"></div>
                 </form>
 
-                <div class="mt-10 text-center">
-                    <p class="text-lg font-semibold text-white mb-4">Connect with us:</p>
-                    <div class="flex justify-center space-x-6">
+                <div class="mt-12 text-center">
+                    <p class="text-xl font-semibold text-white mb-6">Stay Connected:</p>
+                    <div class="flex justify-center space-x-8">
                         <a href="mailto:support@forexpro.com" class="text-gray-400 hover:text-blue-500 transition duration-300 transform hover:scale-110">
                             <!-- Email Icon -->
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-9 w-9" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                             </svg>
                         </a>
                         <a href="https://twitter.com/forexpro" target="_blank" class="text-gray-400 hover:text-blue-500 transition duration-300 transform hover:scale-110">
                             <!-- Twitter Icon (simplified SVG) -->
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" viewBox="0 0 24 24" fill="currentColor">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-9 w-9" viewBox="0 0 24 24" fill="currentColor">
                                 <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.791-1.574 2.164-2.722-.951.564-2.005.974-3.127 1.195-.897-.957-2.174-1.555-3.594-1.555-3.414 0-6.208 2.808-6.208 6.262 0 .486.056.962.162 1.41-.518-.026-1.025-.133-1.514-.298-5.187-2.787-8.683-9.155-8.683-14.717 0-1.01.196-1.983.541-2.909-.54.912-.859 1.957-.859 3.064 0 2.158 1.107 4.067 2.793 5.183-.263-.008-.516-.046-.757-.188v.078c0 3.045 2.167 5.588 5.034 6.168-.507.137-1.042.208-1.595.208-.39 0-.769-.039-1.139-.108.807 2.502 3.136 4.316 5.892 4.372-2.148 1.685-4.57 2.687-7.316 2.687-.478 0-.947-.028-1.408-.081 2.831 1.834 6.205 2.906 9.807 2.906 11.102 0 17.202-9.14 17.202-17.075 0-.26-.006-.519-.014-.778.96-.695 1.797-1.562 2.457-2.545z"/>
                             </svg>
                         </a>
                         <a href="https://linkedin.com/company/forexpro" target="_blank" class="text-gray-400 hover:text-blue-500 transition duration-300 transform hover:scale-110">
                             <!-- LinkedIn Icon -->
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" viewBox="0 0 24 24" fill="currentColor">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-9 w-9" viewBox="0 0 24 24" fill="currentColor">
                                 <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
                             </svg>
                         </a>
@@ -351,14 +408,14 @@
     </main>
 
     <!-- Footer Section -->
-    <footer class="bg-gray-950 text-gray-500 p-6 md:p-8 text-center mt-auto rounded-t-xl shadow-inner">
-        <div class="container mx-auto">
-            <p class="mb-2">&copy; <span id="current-year"></span> ForexPro. All rights reserved.</p>
-            <p class="text-xs italic">
+    <footer class="bg-gray-950 text-gray-500 py-6 md:py-8 text-center mt-auto rounded-t-xl shadow-inner">
+        <div class="container mx-auto px-4 md:px-8">
+            <p class="mb-3 text-sm md:text-base">&copy; <span id="current-year"></span> ForexPro. All rights reserved.</p>
+            <p class="text-xs italic leading-snug max-w-2xl mx-auto">
                 Risk Warning: Trading leveraged products such as Forex and CFDs carries a high level of risk and may not be suitable for all investors.
-                Losses can exceed deposits. Please ensure you fully understand the risks involved.
+                Losses can exceed deposits. Please ensure you fully understand the risks involved before trading.
             </p>
-            <p class="text-sm mt-2">Designed for optimal engagement and user experience.</p>
+            <p class="text-xs mt-3">Designed for clarity, performance, and user engagement.</p>
         </div>
     </footer>
 
@@ -374,10 +431,10 @@
 
             /**
              * Shows the specified section and hides all others.
-             * @param {string} targetId - The ID of the section to show (e.g., 'home-section').
+             * @param {string} targetId - The ID of the section to show (e.g., 'hero-section').
              */
             function showSection(targetId) {
-                // Hide all sections
+                // Hide all sections first to ensure only one is active
                 sections.forEach(section => {
                     section.classList.remove('active');
                 });
@@ -386,7 +443,7 @@
                 const targetSection = document.getElementById(targetId);
                 if (targetSection) {
                     targetSection.classList.add('active');
-                    // Scroll to the top of the section for better UX on mobile
+                    // Scroll to the top of the section for better UX on smaller screens
                     targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }
             }
@@ -395,13 +452,13 @@
             navLinks.forEach(link => {
                 link.addEventListener('click', function(event) {
                     event.preventDefault(); // Prevent default anchor behavior
-                    const targetHash = this.getAttribute('href'); // e.g., '#about-forex'
-                    const targetId = targetHash.substring(1) + '-section'; // e.g., 'about-forex-section'
+                    const targetHash = this.getAttribute('href'); // e.g., '#about-forex-trade'
+                    const targetId = targetHash.substring(1) + '-section'; // Convert '#hash' to 'hash-section'
                     showSection(targetId);
                 });
             });
 
-            // Handle initial section display based on URL hash or default to home
+            // Handle initial section display based on URL hash or default to hero
             function handleInitialSection() {
                 const initialHash = window.location.hash;
                 if (initialHash) {
@@ -410,22 +467,21 @@
                     if (targetSection) {
                         showSection(targetId);
                     } else {
-                        // If hash doesn't match a valid section, default to home
-                        showSection('home-section');
+                        // Fallback to hero if the hash doesn't match a valid section
+                        showSection('hero-section');
                     }
                 } else {
-                    showSection('home-section'); // Default to home section if no hash
+                    showSection('hero-section'); // Default to hero section if no hash
                 }
             }
 
             // Call on page load
             handleInitialSection();
 
-            // Handle contact form submission
+            // Handle contact form submission (client-side simulation)
             form.addEventListener('submit', function(event) {
                 event.preventDefault(); // Prevent actual form submission
 
-                // Simulate form submission
                 const name = document.getElementById('name').value;
                 const email = document.getElementById('email').value;
                 const message = document.getElementById('message').value;
@@ -437,13 +493,13 @@
 
                 // Display a success message
                 formMessage.classList.remove('hidden');
-                formMessage.classList.add('bg-green-800', 'text-green-200'); /* Darker green for dark theme */
-                formMessage.textContent = 'Thank you for your message, ' + name + '! We will get back to you soon.';
+                formMessage.classList.add('bg-green-800', 'text-green-200');
+                formMessage.textContent = 'Thank you for your message, ' + name + '! We will get back to you shortly.';
 
-                // Clear the form fields
+                // Clear form fields
                 form.reset();
 
-                // Hide the message after a few seconds
+                // Hide message after 5 seconds
                 setTimeout(() => {
                     formMessage.classList.add('hidden');
                     formMessage.classList.remove('bg-green-800', 'text-green-200');
@@ -452,25 +508,29 @@
 
             // D3.js Chart for 'About Forex Trade' section
             function drawForexChart() {
+                // Clear any existing SVG elements before redrawing
+                d3.select("#forexChart").selectAll("*").remove();
+
                 const svg = d3.select("#forexChart");
                 const margin = { top: 20, right: 30, bottom: 40, left: 50 };
 
-                // Use the parent container's size for responsiveness
+                // Get the size of the parent container for responsive charting
                 const container = d3.select(".chart-container").node();
-                if (!container) return; // Exit if container not found
+                if (!container) return; // Exit if container not found (e.g., section not active)
 
                 const width = container.clientWidth - margin.left - margin.right;
                 const height = container.clientHeight - margin.top - margin.bottom;
 
+                // Set SVG dimensions to fill parent container
                 svg.attr("width", container.clientWidth)
                    .attr("height", container.clientHeight);
 
                 const g = svg.append("g").attr("transform", `translate(${margin.left},${margin.top})`);
 
-                // Generate some simulated forex data
+                // Generate simulated forex data for a dynamic upward trend
                 const data = Array.from({ length: 50 }, (_, i) => ({
                     date: new Date(2023, 0, i + 1),
-                    value: Math.random() * 100 + 50 + (i * 0.5) + (Math.sin(i / 5) * 20) // Upward trend with fluctuations
+                    value: 100 + (i * 2) + (Math.sin(i / 3) * 15) + (Math.random() * 5) // Simulates growth with natural fluctuations
                 }));
 
                 const x = d3.scaleTime()
@@ -484,7 +544,7 @@
                 const line = d3.line()
                     .x(d => x(d.date))
                     .y(d => y(d.value))
-                    .curve(d3.curveCardinal); // Smooth curve
+                    .curve(d3.curveCardinal); // Smooth curve for a more pleasing visual
 
                 const area = d3.area()
                     .x(d => x(d.date))
@@ -492,7 +552,7 @@
                     .y1(d => y(d.value))
                     .curve(d3.curveCardinal);
 
-                // Add gradient for area fill
+                // Define gradient for the area fill to create depth
                 const defs = svg.append("defs");
                 const gradient = defs.append("linearGradient")
                     .attr("id", "area-gradient")
@@ -502,11 +562,11 @@
                     .attr("y2", "100%");
                 gradient.append("stop")
                     .attr("offset", "0%")
-                    .attr("stop-color", "#4CAF50") // Green for top
+                    .attr("stop-color", "var(--color-accent-green)") /* Green from top */
                     .attr("stop-opacity", 0.8);
                 gradient.append("stop")
                     .attr("offset", "100%")
-                    .attr("stop-color", "#1A1A2E") // Dark background for bottom
+                    .attr("stop-color", "var(--color-dark-bg)") /* Fades to background color */
                     .attr("stop-opacity", 0.1);
 
                 g.append("path")
@@ -531,28 +591,35 @@
                     .call(d3.axisLeft(y).ticks(5));
             }
 
-            // Draw chart initially and on window resize
+            // Function to redraw chart, used on resize and section activation
             function redrawChart() {
-                // Clear existing chart elements before redrawing
-                d3.select("#forexChart").selectAll("*").remove();
-                drawForexChart();
+                // Ensure chart is only drawn if the section is active
+                if (document.getElementById('about-forex-trade-section').classList.contains('active')) {
+                    drawForexChart();
+                }
             }
 
-            // Only draw chart when the "About Forex Trade" section is active
-            const observer = new IntersectionObserver((entries) => {
+            // Observer to draw chart when 'About Forex Trade' section becomes visible
+            const aboutSectionObserver = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
-                    if (entry.isIntersecting && entry.target.id === 'about-forex-section') {
+                    if (entry.isIntersecting && entry.target.id === 'about-forex-trade-section') {
                         redrawChart();
+                        // Optional: disconnect observer after first draw if chart doesn't need to react to scroll state changes
+                        // aboutSectionObserver.disconnect();
                     }
                 });
             }, { threshold: 0.5 }); // Trigger when 50% of the section is visible
 
-            const aboutSection = document.getElementById('about-forex-section');
+            const aboutSection = document.getElementById('about-forex-trade-section');
             if (aboutSection) {
-                observer.observe(aboutSection);
+                aboutSectionObserver.observe(aboutSection);
             }
 
+            // Redraw chart on window resize for full responsiveness
             window.addEventListener('resize', redrawChart);
+
+            // Initial draw if the section is already active on load
+            redrawChart();
         });
     </script>
 </body>
