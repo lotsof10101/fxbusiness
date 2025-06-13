@@ -3,51 +3,117 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Professional Portfolio</title>
+    <title>Forex Trading Pro - Unlock Your Potential</title>
     <!-- Tailwind CSS CDN for styling -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Google Fonts - Inter for a professional look -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- D3.js for charts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
     <style>
         /* Custom styles to override or extend Tailwind, and ensure Inter font */
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #f8f8f8; /* Light gray background */
+            background-color: #1a1a2e; /* Dark background */
+            color: #e0e0e0; /* Light text color */
         }
         .section-content {
             display: none; /* Hidden by default */
+            animation: fadeIn 0.5s ease-out forwards; /* Fade in animation */
         }
         .section-content.active {
             display: block; /* Shown when active */
         }
-        /* Custom scrollbar for better aesthetics */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        /* Custom scrollbar for better aesthetics on dark theme */
         ::-webkit-scrollbar {
             width: 8px;
         }
         ::-webkit-scrollbar-track {
-            background: #f1f1f1;
+            background: #2a2a4a; /* Darker track */
         }
         ::-webkit-scrollbar-thumb {
-            background: #888;
+            background: #5c5c8a; /* Accent thumb */
             border-radius: 4px;
         }
         ::-webkit-scrollbar-thumb:hover {
-            background: #555;
+            background: #7a7ab3; /* Lighter accent on hover */
+        }
+        /* Chart specific styles */
+        .chart-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            height: 0;
+            overflow: hidden;
+            background-color: #2a2a4a;
+            border-radius: 0.75rem; /* rounded-xl */
+        }
+        .chart-svg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        .line {
+            fill: none;
+            stroke: #4CAF50; /* Green for bullish trend */
+            stroke-width: 2px;
+        }
+        .area {
+            fill: url(#area-gradient);
+            opacity: 0.7;
+        }
+        .axis text {
+            fill: #a0a0a0;
+            font-size: 0.875rem; /* text-sm */
+        }
+        .axis path, .axis line {
+            stroke: #404040;
+        }
+
+        /* Call to Action Button specific styles for glow effect */
+        .cta-button {
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 300%;
+            height: 300%;
+            background: radial-gradient(circle, rgba(76,175,80,0.5) 0%, rgba(29,78,216,0) 70%);
+            transition: all 0.7s ease-out;
+            border-radius: 50%;
+            z-index: -1;
+            transform: translate(-50%, -50%) scale(0);
+            opacity: 0;
+        }
+        .cta-button:hover::before {
+            transform: translate(-50%, -50%) scale(1);
+            opacity: 1;
         }
     </style>
 </head>
 <body class="flex flex-col min-h-screen">
     <!-- Header Section -->
-    <header class="bg-gradient-to-r from-blue-600 to-indigo-700 text-white shadow-lg p-4 md:p-6 sticky top-0 z-50">
+    <header class="bg-gradient-to-r from-blue-900 to-indigo-900 text-white shadow-xl p-4 md:p-6 sticky top-0 z-50">
         <div class="container mx-auto flex flex-col md:flex-row justify-between items-center">
-            <h1 class="text-3xl font-bold mb-3 md:mb-0">My Portfolio</h1>
+            <h1 class="text-3xl font-extrabold mb-3 md:mb-0 tracking-wide">ForexPro</h1>
             <nav>
                 <ul class="flex flex-wrap justify-center space-x-4 md:space-x-8">
-                    <li><a href="#home" class="nav-link text-lg hover:text-blue-200 transition duration-300 ease-in-out px-3 py-2 rounded-lg">Home</a></li>
-                    <li><a href="#about" class="nav-link text-lg hover:text-blue-200 transition duration-300 ease-in-out px-3 py-2 rounded-lg">About</a></li>
-                    <li><a href="#portfolio" class="nav-link text-lg hover:text-blue-200 transition duration-300 ease-in-out px-3 py-2 rounded-lg">Portfolio</a></li>
-                    <li><a href="#services" class="nav-link text-lg hover:text-blue-200 transition duration-300 ease-in-out px-3 py-2 rounded-lg">Services</a></li>
-                    <li><a href="#contact" class="nav-link text-lg hover:text-blue-200 transition duration-300 ease-in-out px-3 py-2 rounded-lg">Contact</a></li>
+                    <li><a href="#about-forex" class="nav-link text-lg font-medium hover:text-blue-300 transition duration-300 ease-in-out px-3 py-2 rounded-lg">About Forex</a></li>
+                    <li><a href="#requirements" class="nav-link text-lg font-medium hover:text-blue-300 transition duration-300 ease-in-out px-3 py-2 rounded-lg">Requirements</a></li>
+                    <li><a href="#how-to-trade" class="nav-link text-lg font-medium hover:text-blue-300 transition duration-300 ease-in-out px-3 py-2 rounded-lg">How to Trade</a></li>
+                    <li><a href="#forex-copy" class="nav-link text-lg font-medium hover:text-blue-300 transition duration-300 ease-in-out px-3 py-2 rounded-lg">ForexCopy</a></li>
+                    <li><a href="#contact" class="nav-link text-lg font-medium hover:text-blue-300 transition duration-300 ease-in-out px-3 py-2 rounded-lg">Contact</a></li>
                 </ul>
             </nav>
         </div>
@@ -56,240 +122,225 @@
     <!-- Main Content Area -->
     <main class="flex-grow container mx-auto p-4 md:p-8">
 
-        <!-- Home Section -->
-        <section id="home-section" class="section-content active bg-white rounded-xl shadow-lg p-6 md:p-10 mb-8 border-t-4 border-blue-500">
-            <h2 class="text-4xl md:text-5xl font-extrabold text-gray-800 mb-4 text-center">Welcome to My Professional Portfolio</h2>
-            <p class="text-lg text-gray-600 leading-relaxed text-center mb-6">
-                I am a passionate and dedicated professional with expertise in <span class="font-semibold text-blue-600">Web Development</span>,
-                <span class="font-semibold text-blue-600">UI/UX Design</span>, and <span class="font-semibold text-blue-600">Digital Marketing</span>.
-                Explore my work and see how I can help bring your ideas to life.
+        <!-- Hero Section - Designed for high impact and call to action -->
+        <section id="home-section" class="section-content active bg-gradient-to-br from-gray-900 to-black rounded-xl shadow-2xl p-6 md:p-12 mb-8 border-t-4 border-green-500 text-center">
+            <h2 class="text-4xl md:text-6xl font-extrabold text-white mb-6 leading-tight tracking-tight animate-pulse-fade">
+                Unlock Your Financial Freedom Through Forex Trading
+            </h2>
+            <p class="text-lg md:text-xl text-gray-300 leading-relaxed max-w-3xl mx-auto mb-8">
+                Join thousands of successful traders who are leveraging the world's largest financial market.
+                Discover the power of currency exchange and transform your future.
             </p>
-            <div class="flex flex-col md:flex-row items-center justify-center space-y-4 md:space-y-0 md:space-x-6">
-                <img src="https://placehold.co/150x150/CCE5FF/000000?text=Profile" alt="Profile Picture" class="rounded-full border-4 border-blue-400 shadow-xl w-32 h-32 md:w-40 md:h-40 object-cover">
-                <div class="text-center md:text-left">
-                    <p class="text-xl font-semibold text-gray-700">John Doe</p>
-                    <p class="text-md text-gray-500">Full Stack Developer & Designer</p>
-                    <a href="#contact" class="inline-block mt-4 bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg shadow-md transition duration-300 ease-in-out transform hover:scale-105">
-                        Get in Touch
+            <a href="YOUR_AFFILIATE_LINK_HERE" target="_blank" class="cta-button inline-block bg-green-600 hover:bg-green-700 text-white font-bold py-4 px-10 rounded-full shadow-lg transition duration-300 ease-in-out transform hover:scale-105 text-xl relative overflow-hidden group">
+                Start Trading Today!
+                <span class="absolute right-4 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <!-- Right Arrow Icon -->
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                    </svg>
+                </span>
+            </a>
+            <p class="text-sm text-gray-500 mt-6">
+                *Risk Warning: Trading leveraged products such as Forex and CFDs carries a high level of risk.
+            </p>
+        </section>
+
+        <!-- About Forex Trade Section -->
+        <section id="about-forex-section" class="section-content bg-gray-800 rounded-xl shadow-xl p-6 md:p-10 mb-8 border-t-4 border-blue-500">
+            <h2 class="text-3xl md:text-4xl font-bold text-white mb-6 text-center">About Forex Trading</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                <div class="text-gray-300 leading-relaxed">
+                    <p class="mb-4">
+                        Forex, or Foreign Exchange, is the global marketplace for exchanging national currencies.
+                        It is the largest and most liquid market in the world, with trillions of dollars traded daily.
+                        This immense volume provides unparalleled opportunities for traders to profit from currency fluctuations.
+                    </p>
+                    <p class="mb-4">
+                        Unlike traditional stock markets, Forex operates 24 hours a day, five days a week,
+                        offering flexibility and constant access to global financial events.
+                        Whether you are a beginner or an experienced investor, Forex offers diverse strategies
+                        to capitalize on economic trends, political shifts, and interest rate differentials.
+                    </p>
+                    <p class="mb-4">
+                        Understanding the basics of currency pairs, leverage, and risk management is crucial.
+                        We provide comprehensive resources to help you navigate this dynamic market effectively.
+                    </p>
+                    <a href="YOUR_AFFILIATE_LINK_HERE" target="_blank" class="inline-block mt-4 bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-6 rounded-lg shadow-md transition duration-300 ease-in-out transform hover:scale-105">
+                        Learn More & Open Account
+                    </a>
+                </div>
+                <div class="chart-container">
+                    <svg id="forexChart" class="chart-svg"></svg>
+                </div>
+            </div>
+        </section>
+
+        <!-- Account Open Requirement Section -->
+        <section id="requirements-section" class="section-content bg-gray-800 rounded-xl shadow-xl p-6 md:p-10 mb-8 border-t-4 border-indigo-500">
+            <h2 class="text-3xl md:text-4xl font-bold text-white mb-8 text-center">Account Opening Requirements</h2>
+            <div class="max-w-3xl mx-auto bg-gray-900 p-8 rounded-lg shadow-inner border border-gray-700">
+                <p class="text-gray-300 mb-6 text-center text-lg">
+                    Opening a Forex trading account is a straightforward process designed to ensure security and compliance.
+                    Here are the typical requirements to get started:
+                </p>
+                <ul class="list-disc list-inside space-y-4 text-gray-300 text-lg">
+                    <li class="flex items-start">
+                        <span class="mr-2 text-green-400">&#10003;</span>
+                        <span class="font-semibold text-white">Identification Document:</span> A valid government-issued ID (Passport, National ID Card, Driver's License).
+                    </li>
+                    <li class="flex items-start">
+                        <span class="mr-2 text-green-400">&#10003;</span>
+                        <span class="font-semibold text-white">Proof of Residence:</span> A recent utility bill (electricity, water, gas) or bank statement (issued within the last 3 months) showing your address.
+                    </li>
+                    <li class="flex items-start">
+                        <span class="mr-2 text-green-400">&#10003;</span>
+                        <span class="font-semibold text-white">Minimum Deposit:</span> Most brokers require a minimum initial deposit, which can range from $100 to $1,000 depending on the account type.
+                    </li>
+                    <li class="flex items-start">
+                        <span class="mr-2 text-green-400">&#10003;</span>
+                        <span class="font-semibold text-white">Completed Application Form:</span> Fill out the online application form with accurate personal and financial details.
+                    </li>
+                    <li class="flex items-start">
+                        <span class="mr-2 text-green-400">&#10003;</span>
+                        <span class="font-semibold text-white">Risk Disclosure Agreement:</span> Acknowledgment and acceptance of the risks involved in Forex trading.
+                    </li>
+                </ul>
+                <div class="text-center mt-10">
+                    <a href="YOUR_AFFILIATE_LINK_HERE" target="_blank" class="cta-button inline-block bg-green-600 hover:bg-green-700 text-white font-bold py-4 px-10 rounded-full shadow-lg transition duration-300 ease-in-out transform hover:scale-105 text-xl">
+                        Apply Now!
                     </a>
                 </div>
             </div>
         </section>
 
-        <!-- About Section -->
-        <section id="about-section" class="section-content bg-white rounded-xl shadow-lg p-6 md:p-10 mb-8 border-t-4 border-indigo-500">
-            <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-6 text-center">About Me</h2>
-            <div class="flex flex-col md:flex-row items-center md:items-start gap-8">
-                <div class="w-full md:w-1/3 flex justify-center">
-                    <img src="https://placehold.co/250x250/FFEFCC/000000?text=About+Me" alt="About Me Picture" class="rounded-lg shadow-md w-60 h-60 object-cover border-2 border-indigo-300">
+        <!-- How to Trade Section -->
+        <section id="how-to-trade-section" class="section-content bg-gray-800 rounded-xl shadow-xl p-6 md:p-10 mb-8 border-t-4 border-teal-500">
+            <h2 class="text-3xl md:text-4xl font-bold text-white mb-8 text-center">How to Trade Forex</h2>
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 text-center">
+                <div class="bg-gray-900 p-6 rounded-lg shadow-md border border-gray-700 hover:shadow-xl transition-shadow duration-300">
+                    <div class="text-teal-400 mb-4">
+                        <!-- Research & Analysis Icon -->
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 19V6l12-3v13m-6 3H9m12 0h3v-8l-3-1v9zm-3 2c-.392 0-.674-.188-.868-.314-.143-.097-.245-.251-.314-.465-.078-.242-.118-.518-.118-.865V9.006c0-1.745-.078-3.084-.118-3.376-.07-.406-.183-.755-.314-.868-.194-.126-.476-.314-.868-.314s-.674.188-.868.314c-.143.097-.245.251-.314.465-.078.242-.118.518-.118.865V18m0-12H9m12 0h3v-8l-3-1v9zm-3 2c-.392 0-.674-.188-.868-.314-.143-.097-.245-.251-.314-.465-.078-.242-.118-.518-.118-.865V9.006c0-1.745-.078-3.084-.118-3.376-.07-.406-.183-.755-.314-.868-.194-.126-.476-.314-.868-.314s-.674.188-.868.314c-.143.097-.245.251-.314.465-.078.242-.118.518-.118.865V18" />
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-semibold text-white mb-3">1. Research & Analyze</h3>
+                    <p class="text-gray-400 leading-relaxed">
+                        Understand market trends, economic indicators, and geopolitical events.
+                        Utilize technical and fundamental analysis to make informed decisions.
+                    </p>
                 </div>
-                <div class="w-full md:w-2/3 text-gray-700 leading-relaxed">
-                    <p class="mb-4">
-                        Hello! My name is John Doe, and I'm a passionate and highly skilled professional with over 7 years of experience in the digital realm.
-                        My journey began with a fascination for how technology can solve real-world problems and create engaging experiences.
+                <div class="bg-gray-900 p-6 rounded-lg shadow-md border border-gray-700 hover:shadow-xl transition-shadow duration-300">
+                    <div class="text-yellow-400 mb-4">
+                        <!-- Plan Your Trade Icon -->
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-semibold text-white mb-3">2. Plan Your Trade</h3>
+                    <p class="text-gray-400 leading-relaxed">
+                        Define your entry and exit points, set stop-loss and take-profit levels.
+                        Develop a robust trading strategy based on your risk tolerance.
                     </p>
-                    <p class="mb-4">
-                        I specialize in crafting responsive and user-friendly web applications using modern front-end frameworks like React and Vue,
-                        and building robust back-end systems with Node.js and Python. My expertise also extends to database management (SQL and NoSQL),
-                        cloud deployment, and API development.
-                    </p>
-                    <p class="mb-4">
-                        Beyond coding, I have a strong foundation in UI/UX principles, ensuring that every project I undertake is not only functional but also
-                        intuitive and visually appealing. I believe in continuous learning and always staying updated with the latest industry trends and technologies.
-                    </p>
-                    <p>
-                        When I'm not coding, you can find me exploring new design tools, contributing to open-source projects, or enjoying a good book.
-                        I'm always eager to take on new challenges and collaborate on innovative projects. Let's create something amazing together!
+                </div>
+                <div class="bg-gray-900 p-6 rounded-lg shadow-md border border-gray-700 hover:shadow-xl transition-shadow duration-300">
+                    <div class="text-red-400 mb-4">
+                        <!-- Execute & Manage Icon -->
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-semibold text-white mb-3">3. Execute & Manage</h3>
+                    <p class="text-gray-400 leading-relaxed">
+                        Place your orders with confidence. Continuously monitor your trades and
+                        adjust your strategy as market conditions evolve.
                     </p>
                 </div>
             </div>
-        </section>
-
-        <!-- Portfolio Section -->
-        <section id="portfolio-section" class="section-content bg-white rounded-xl shadow-lg p-6 md:p-10 mb-8 border-t-4 border-teal-500">
-            <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-8 text-center">My Work</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Project 1 -->
-                <div class="bg-gray-50 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 ease-in-out overflow-hidden border border-gray-200">
-                    <img src="https://placehold.co/400x250/D2F7EE/000000?text=Project+1" alt="Project 1" class="w-full h-48 object-cover">
-                    <div class="p-5">
-                        <h3 class="text-xl font-semibold text-gray-800 mb-2">E-commerce Platform Redesign</h3>
-                        <p class="text-gray-600 text-sm mb-4">
-                            A complete overhaul of an existing e-commerce site, focusing on improved user experience,
-                            modern aesthetics, and performance optimization.
-                        </p>
-                        <ul class="flex flex-wrap gap-2 mb-4">
-                            <li class="bg-teal-200 text-teal-800 text-xs px-2 py-1 rounded-full">React</li>
-                            <li class="bg-teal-200 text-teal-800 text-xs px-2 py-1 rounded-full">Node.js</li>
-                            <li class="bg-teal-200 text-teal-800 text-xs px-2 py-1 rounded-full">MongoDB</li>
-                            <li class="bg-teal-200 text-teal-800 text-xs px-2 py-1 rounded-full">Tailwind CSS</li>
-                        </ul>
-                        <a href="#" class="text-blue-600 hover:text-blue-800 font-medium text-sm">View Project &rarr;</a>
-                    </div>
-                </div>
-                <!-- Project 2 -->
-                <div class="bg-gray-50 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 ease-in-out overflow-hidden border border-gray-200">
-                    <img src="https://placehold.co/400x250/F0D2F7/000000?text=Project+2" alt="Project 2" class="w-full h-48 object-cover">
-                    <div class="p-5">
-                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Mobile Fitness Tracker App</h3>
-                        <p class="text-gray-600 text-sm mb-4">
-                            Developed a cross-platform mobile application for tracking fitness activities,
-                            integrating with health APIs and providing data visualization.
-                        </p>
-                        <ul class="flex flex-wrap gap-2 mb-4">
-                            <li class="bg-purple-200 text-purple-800 text-xs px-2 py-1 rounded-full">React Native</li>
-                            <li class="bg-purple-200 text-purple-800 text-xs px-2 py-1 rounded-full">Firebase</li>
-                            <li class="bg-purple-200 text-purple-800 text-xs px-2 py-1 rounded-full">D3.js</li>
-                        </ul>
-                        <a href="#" class="text-blue-600 hover:text-blue-800 font-medium text-sm">View Project &rarr;</a>
-                    </div>
-                </div>
-                <!-- Project 3 -->
-                <div class="bg-gray-50 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 ease-in-out overflow-hidden border border-gray-200">
-                    <img src="https://placehold.co/400x250/D2EAF7/000000?text=Project+3" alt="Project 3" class="w-full h-48 object-cover">
-                    <div class="p-5">
-                        <h3 class="text-xl font-semibold text-gray-800 mb-2">SaaS Dashboard Development</h3>
-                        <p class="text-gray-600 text-sm mb-4">
-                            Built an intuitive and robust SaaS dashboard for analytics and user management,
-                            featuring real-time data updates and custom reporting.
-                        </p>
-                        <ul class="flex flex-wrap gap-2 mb-4">
-                            <li class="bg-blue-200 text-blue-800 text-xs px-2 py-1 rounded-full">Vue.js</li>
-                            <li class="bg-blue-200 text-blue-800 text-xs px-2 py-1 rounded-full">Python (Flask)</li>
-                            <li class="bg-blue-200 text-blue-800 text-xs px-2 py-1 rounded-full">PostgreSQL</li>
-                        </ul>
-                        <a href="#" class="text-blue-600 hover:text-blue-800 font-medium text-sm">View Project &rarr;</a>
-                    </div>
-                </div>
-                 <!-- Project 4 -->
-                 <div class="bg-gray-50 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 ease-in-out overflow-hidden border border-gray-200">
-                    <img src="https://placehold.co/400x250/F7EED2/000000?text=Project+4" alt="Project 4" class="w-full h-48 object-cover">
-                    <div class="p-5">
-                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Blog Platform with CMS</h3>
-                        <p class="text-gray-600 text-sm mb-4">
-                            Designed and developed a custom blog platform with an integrated content management system for easy publishing.
-                        </p>
-                        <ul class="flex flex-wrap gap-2 mb-4">
-                            <li class="bg-yellow-200 text-yellow-800 text-xs px-2 py-1 rounded-full">WordPress</li>
-                            <li class="bg-yellow-200 text-yellow-800 text-xs px-2 py-1 rounded-full">PHP</li>
-                            <li class="bg-yellow-200 text-yellow-800 text-xs px-2 py-1 rounded-full">MySQL</li>
-                        </ul>
-                        <a href="#" class="text-blue-600 hover:text-blue-800 font-medium text-sm">View Project &rarr;</a>
-                    </div>
-                </div>
-                 <!-- Project 5 -->
-                 <div class="bg-gray-50 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 ease-in-out overflow-hidden border border-gray-200">
-                    <img src="https://placehold.co/400x250/CCF7D2/000000?text=Project+5" alt="Project 5" class="w-full h-48 object-cover">
-                    <div class="p-5">
-                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Interactive Data Visualization</h3>
-                        <p class="text-gray-600 text-sm mb-4">
-                            Created a series of interactive data visualizations to present complex datasets in an understandable format.
-                        </p>
-                        <ul class="flex flex-wrap gap-2 mb-4">
-                            <li class="bg-green-200 text-green-800 text-xs px-2 py-1 rounded-full">D3.js</li>
-                            <li class="bg-green-200 text-green-800 text-xs px-2 py-1 rounded-full">JavaScript</li>
-                            <li class="bg-green-200 text-green-800 text-xs px-2 py-1 rounded-full">SVG</li>
-                        </ul>
-                        <a href="#" class="text-blue-600 hover:text-blue-800 font-medium text-sm">View Project &rarr;</a>
-                    </div>
-                </div>
+            <div class="text-center mt-12">
+                <a href="YOUR_AFFILIATE_LINK_HERE" target="_blank" class="cta-button inline-block bg-green-600 hover:bg-green-700 text-white font-bold py-4 px-10 rounded-full shadow-lg transition duration-300 ease-in-out transform hover:scale-105 text-xl">
+                    Practice with a Demo Account
+                </a>
             </div>
         </section>
 
-        <!-- Services Section -->
-        <section id="services-section" class="section-content bg-white rounded-xl shadow-lg p-6 md:p-10 mb-8 border-t-4 border-orange-500">
-            <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-8 text-center">My Services</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Service 1 -->
-                <div class="bg-gray-50 rounded-lg shadow-md p-6 text-center border border-gray-200 hover:shadow-xl transition-shadow duration-300">
-                    <div class="text-blue-600 mb-4">
-                        <!-- Icon for Web Development -->
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M10 20l4-16m4 4l4 4-4 4M6 4l-4 4 4 4" />
-                        </svg>
-                    </div>
-                    <h3 class="text-2xl font-semibold text-gray-800 mb-3">Web Development</h3>
-                    <p class="text-gray-600 leading-relaxed">
-                        Crafting responsive, high-performance websites and web applications using modern technologies.
-                        From front-end aesthetics to robust back-end logic.
+        <!-- ForexCopy Section -->
+        <section id="forex-copy-section" class="section-content bg-gray-800 rounded-xl shadow-xl p-6 md:p-10 mb-8 border-t-4 border-orange-500">
+            <h2 class="text-3xl md:text-4xl font-bold text-white mb-8 text-center">ForexCopy: Amplify Your Profits</h2>
+            <div class="max-w-4xl mx-auto flex flex-col md:flex-row items-center gap-8">
+                <div class="md:w-1/2 text-gray-300 leading-relaxed">
+                    <p class="mb-4 text-lg">
+                        New to Forex or lack the time to trade actively? ForexCopy (also known as copy trading)
+                        allows you to automatically replicate the trades of experienced and successful traders.
+                        It's an innovative way to participate in the Forex market without needing in-depth knowledge or constant monitoring.
                     </p>
+                    <p class="mb-4 text-lg">
+                        Simply choose a skilled trader, allocate funds, and their trades will be mirrored in your account.
+                        You maintain full control and can stop copying at any time. This offers a fantastic opportunity
+                        to learn from the best and potentially earn significant returns.
+                    </p>
+                    <ul class="list-disc list-inside space-y-2 mb-6 text-gray-300">
+                        <li class="flex items-start"><span class="mr-2 text-green-400">&#10003;</span>Passive Income Potential</li>
+                        <li class="flex items-start"><span class="mr-2 text-green-400">&#10003;</span>Learn from Experts</li>
+                        <li class="flex items-start"><span class="mr-2 text-green-400">&#10003;</span>Full Control Over Your Funds</li>
+                        <li class="flex items-start"><span class="mr-2 text-green-400">&#10003;</span>No Prior Trading Experience Needed</li>
+                    </ul>
+                    <a href="YOUR_AFFILIATE_LINK_HERE" target="_blank" class="cta-button inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-lg shadow-md transition duration-300 ease-in-out transform hover:scale-105">
+                        Discover Top Traders!
+                    </a>
                 </div>
-                <!-- Service 2 -->
-                <div class="bg-gray-50 rounded-lg shadow-md p-6 text-center border border-gray-200 hover:shadow-xl transition-shadow duration-300">
-                    <div class="text-green-600 mb-4">
-                        <!-- Icon for UI/UX Design -->
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M9.663 17h4.673M12 17v5m6.44-4.506l-1.932-2.142A.5.5 0 0014.28 15h-4.56a.5.5 0 00-.348.857L5.56 18.006m13.232-9.429l-1.932-2.142A.5.5 0 0014.28 6h-4.56a.5.5 0 00-.348.857L5.56 9.006m13.232 5.429l-1.932-2.142A.5.5 0 0014.28 12h-4.56a.5.5 0 00-.348.857L5.56 15.006" />
-                        </svg>
-                    </div>
-                    <h3 class="text-2xl font-semibold text-gray-800 mb-3">UI/UX Design</h3>
-                    <p class="text-gray-600 leading-relaxed">
-                        Creating intuitive, engaging, and aesthetically pleasing user interfaces and experiences.
-                        Focus on user research, wireframing, and prototyping.
-                    </p>
-                </div>
-                <!-- Service 3 -->
-                <div class="bg-gray-50 rounded-lg shadow-md p-6 text-center border border-gray-200 hover:shadow-xl transition-shadow duration-300">
-                    <div class="text-red-600 mb-4">
-                        <!-- Icon for Consulting -->
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5S19.832 5.477 21 6.253v13C19.832 18.477 18.246 18 16.5 18S13.168 18.477 12 19.253" />
-                        </svg>
-                    </div>
-                    <h3 class="text-2xl font-semibold text-gray-800 mb-3">Technical Consulting</h3>
-                    <p class="text-gray-600 leading-relaxed">
-                        Providing expert advice and strategic guidance on technology stacks, project planning,
-                        and system architecture to optimize your digital presence.
-                    </p>
+                <div class="md:w-1/2 flex justify-center">
+                    <img src="https://placehold.co/400x300/FFAC42/000000?text=ForexCopy+Concept" alt="ForexCopy Illustration" class="rounded-lg shadow-xl border-2 border-orange-400">
                 </div>
             </div>
         </section>
 
         <!-- Contact Section -->
-        <section id="contact-section" class="section-content bg-white rounded-xl shadow-lg p-6 md:p-10 mb-8 border-t-4 border-purple-500">
-            <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-8 text-center">Get in Touch</h2>
+        <section id="contact-section" class="section-content bg-gray-800 rounded-xl shadow-xl p-6 md:p-10 mb-8 border-t-4 border-purple-500">
+            <h2 class="text-3xl md:text-4xl font-bold text-white mb-8 text-center">Get in Touch</h2>
             <div class="max-w-xl mx-auto">
-                <p class="text-center text-gray-700 mb-6">
-                    Have a project in mind or just want to say hello? Feel free to reach out using the form below, or connect with me via email or social media.
+                <p class="text-center text-gray-300 mb-6">
+                    Have questions about Forex trading, our services, or anything else? Feel free to reach out.
+                    We're here to help you on your trading journey.
                 </p>
                 <form id="contact-form" class="space-y-6">
                     <div>
-                        <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Name</label>
-                        <input type="text" id="name" name="name" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 transition duration-150 ease-in-out" placeholder="Your Name" required>
+                        <label for="name" class="block text-sm font-medium text-gray-300 mb-1">Name</label>
+                        <input type="text" id="name" name="name" class="mt-1 block w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-md shadow-sm text-white focus:ring-blue-500 focus:border-blue-500 transition duration-150 ease-in-out" placeholder="Your Name" required>
                     </div>
                     <div>
-                        <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email</label>
-                        <input type="email" id="email" name="email" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 transition duration-150 ease-in-out" placeholder="your@example.com" required>
+                        <label for="email" class="block text-sm font-medium text-gray-300 mb-1">Email</label>
+                        <input type="email" id="email" name="email" class="mt-1 block w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-md shadow-sm text-white focus:ring-blue-500 focus:border-blue-500 transition duration-150 ease-in-out" placeholder="your@example.com" required>
                     </div>
                     <div>
-                        <label for="message" class="block text-sm font-medium text-gray-700 mb-1">Message</label>
-                        <textarea id="message" name="message" rows="5" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 transition duration-150 ease-in-out" placeholder="Your message..." required></textarea>
+                        <label for="message" class="block text-sm font-medium text-gray-300 mb-1">Message</label>
+                        <textarea id="message" name="message" rows="5" class="mt-1 block w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-md shadow-sm text-white focus:ring-blue-500 focus:border-blue-500 transition duration-150 ease-in-out" placeholder="Your message..." required></textarea>
                     </div>
-                    <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg shadow-md transition duration-300 ease-in-out transform hover:scale-105">
+                    <button type="submit" class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-lg shadow-md transition duration-300 ease-in-out transform hover:scale-105">
                         Send Message
                     </button>
                     <div id="form-message" class="mt-4 p-3 rounded-md text-center hidden"></div>
                 </form>
 
                 <div class="mt-10 text-center">
-                    <p class="text-lg font-semibold text-gray-800 mb-4">Find me on:</p>
+                    <p class="text-lg font-semibold text-white mb-4">Connect with us:</p>
                     <div class="flex justify-center space-x-6">
-                        <a href="mailto:john.doe@example.com" class="text-gray-500 hover:text-blue-600 transition duration-300 transform hover:scale-110">
+                        <a href="mailto:support@forexpro.com" class="text-gray-400 hover:text-blue-500 transition duration-300 transform hover:scale-110">
                             <!-- Email Icon -->
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                             </svg>
                         </a>
-                        <a href="https://linkedin.com/in/johndoe" target="_blank" class="text-gray-500 hover:text-blue-600 transition duration-300 transform hover:scale-110">
-                            <!-- LinkedIn Icon (simplified SVG) -->
+                        <a href="https://twitter.com/forexpro" target="_blank" class="text-gray-400 hover:text-blue-500 transition duration-300 transform hover:scale-110">
+                            <!-- Twitter Icon (simplified SVG) -->
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                                <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.791-1.574 2.164-2.722-.951.564-2.005.974-3.127 1.195-.897-.957-2.174-1.555-3.594-1.555-3.414 0-6.208 2.808-6.208 6.262 0 .486.056.962.162 1.41-.518-.026-1.025-.133-1.514-.298-5.187-2.787-8.683-9.155-8.683-14.717 0-1.01.196-1.983.541-2.909-.54.912-.859 1.957-.859 3.064 0 2.158 1.107 4.067 2.793 5.183-.263-.008-.516-.046-.757-.188v.078c0 3.045 2.167 5.588 5.034 6.168-.507.137-1.042.208-1.595.208-.39 0-.769-.039-1.139-.108.807 2.502 3.136 4.316 5.892 4.372-2.148 1.685-4.57 2.687-7.316 2.687-.478 0-.947-.028-1.408-.081 2.831 1.834 6.205 2.906 9.807 2.906 11.102 0 17.202-9.14 17.202-17.075 0-.26-.006-.519-.014-.778.96-.695 1.797-1.562 2.457-2.545z"/>
                             </svg>
                         </a>
-                        <a href="https://github.com/johndoe" target="_blank" class="text-gray-500 hover:text-blue-600 transition duration-300 transform hover:scale-110">
-                            <!-- GitHub Icon (simplified SVG) -->
+                        <a href="https://linkedin.com/company/forexpro" target="_blank" class="text-gray-400 hover:text-blue-500 transition duration-300 transform hover:scale-110">
+                            <!-- LinkedIn Icon -->
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.08-.731.084-.716.084-.716 1.192.085 1.815 1.226 1.815 1.226 1.057 1.816 2.92.833 3.61.637.109-.496.417-.833.763-1.02-.27-.272-.593-.443-.96-.443-3.067 0-6.002-1.535-6.002-6.815 0-1.507.528-2.748 1.407-3.71-.14-.272-.607-1.75.137-3.642 0 0 1.149-.371 3.754 1.426 1.09-.303 2.25-.454 3.409-.458 1.15.004 2.31.155 3.409.458 2.605-1.797 3.754-1.426 3.754-1.426.744 1.892.277 3.37.137 3.642.879.962 1.407 2.203 1.407 3.71 0 5.29-2.939 6.27-6.002 6.815.42.36.793 1.12.793 2.252v3.328c0 .319.192.694.8.576C20.562 21.82 24 17.322 24 12c0-6.627-5.373-12-12-12z"/>
+                                <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
                             </svg>
                         </a>
                     </div>
@@ -300,15 +351,18 @@
     </main>
 
     <!-- Footer Section -->
-    <footer class="bg-gray-800 text-white p-6 md:p-8 text-center mt-auto rounded-t-xl">
+    <footer class="bg-gray-950 text-gray-500 p-6 md:p-8 text-center mt-auto rounded-t-xl shadow-inner">
         <div class="container mx-auto">
-            <p class="mb-2">&copy; <span id="current-year"></span> John Doe. All rights reserved.</p>
-            <p class="text-sm">Built with <span class="text-red-500">&hearts;</span> and Tailwind CSS.</p>
+            <p class="mb-2">&copy; <span id="current-year"></span> ForexPro. All rights reserved.</p>
+            <p class="text-xs italic">
+                Risk Warning: Trading leveraged products such as Forex and CFDs carries a high level of risk and may not be suitable for all investors.
+                Losses can exceed deposits. Please ensure you fully understand the risks involved.
+            </p>
+            <p class="text-sm mt-2">Designed for optimal engagement and user experience.</p>
         </div>
     </footer>
 
     <script>
-        // JavaScript for navigation and form handling
         document.addEventListener('DOMContentLoaded', function() {
             // Set current year in footer
             document.getElementById('current-year').textContent = new Date().getFullYear();
@@ -341,8 +395,8 @@
             navLinks.forEach(link => {
                 link.addEventListener('click', function(event) {
                     event.preventDefault(); // Prevent default anchor behavior
-                    const targetHash = this.getAttribute('href'); // e.g., '#home'
-                    const targetId = targetHash.substring(1) + '-section'; // e.g., 'home-section'
+                    const targetHash = this.getAttribute('href'); // e.g., '#about-forex'
+                    const targetId = targetHash.substring(1) + '-section'; // e.g., 'about-forex-section'
                     showSection(targetId);
                 });
             });
@@ -367,7 +421,7 @@
             // Call on page load
             handleInitialSection();
 
-            // Handle form submission
+            // Handle contact form submission
             form.addEventListener('submit', function(event) {
                 event.preventDefault(); // Prevent actual form submission
 
@@ -383,8 +437,8 @@
 
                 // Display a success message
                 formMessage.classList.remove('hidden');
-                formMessage.classList.add('bg-green-100', 'text-green-700');
-                formMessage.textContent = 'Thank you for your message, ' + name + '! I will get back to you soon.';
+                formMessage.classList.add('bg-green-800', 'text-green-200'); /* Darker green for dark theme */
+                formMessage.textContent = 'Thank you for your message, ' + name + '! We will get back to you soon.';
 
                 // Clear the form fields
                 form.reset();
@@ -392,9 +446,113 @@
                 // Hide the message after a few seconds
                 setTimeout(() => {
                     formMessage.classList.add('hidden');
-                    formMessage.classList.remove('bg-green-100', 'text-green-700');
+                    formMessage.classList.remove('bg-green-800', 'text-green-200');
                 }, 5000);
             });
+
+            // D3.js Chart for 'About Forex Trade' section
+            function drawForexChart() {
+                const svg = d3.select("#forexChart");
+                const margin = { top: 20, right: 30, bottom: 40, left: 50 };
+
+                // Use the parent container's size for responsiveness
+                const container = d3.select(".chart-container").node();
+                if (!container) return; // Exit if container not found
+
+                const width = container.clientWidth - margin.left - margin.right;
+                const height = container.clientHeight - margin.top - margin.bottom;
+
+                svg.attr("width", container.clientWidth)
+                   .attr("height", container.clientHeight);
+
+                const g = svg.append("g").attr("transform", `translate(${margin.left},${margin.top})`);
+
+                // Generate some simulated forex data
+                const data = Array.from({ length: 50 }, (_, i) => ({
+                    date: new Date(2023, 0, i + 1),
+                    value: Math.random() * 100 + 50 + (i * 0.5) + (Math.sin(i / 5) * 20) // Upward trend with fluctuations
+                }));
+
+                const x = d3.scaleTime()
+                    .domain(d3.extent(data, d => d.date))
+                    .range([0, width]);
+
+                const y = d3.scaleLinear()
+                    .domain([d3.min(data, d => d.value) - 10, d3.max(data, d => d.value) + 10])
+                    .range([height, 0]);
+
+                const line = d3.line()
+                    .x(d => x(d.date))
+                    .y(d => y(d.value))
+                    .curve(d3.curveCardinal); // Smooth curve
+
+                const area = d3.area()
+                    .x(d => x(d.date))
+                    .y0(height)
+                    .y1(d => y(d.value))
+                    .curve(d3.curveCardinal);
+
+                // Add gradient for area fill
+                const defs = svg.append("defs");
+                const gradient = defs.append("linearGradient")
+                    .attr("id", "area-gradient")
+                    .attr("x1", "0%")
+                    .attr("y1", "0%")
+                    .attr("x2", "0%")
+                    .attr("y2", "100%");
+                gradient.append("stop")
+                    .attr("offset", "0%")
+                    .attr("stop-color", "#4CAF50") // Green for top
+                    .attr("stop-opacity", 0.8);
+                gradient.append("stop")
+                    .attr("offset", "100%")
+                    .attr("stop-color", "#1A1A2E") // Dark background for bottom
+                    .attr("stop-opacity", 0.1);
+
+                g.append("path")
+                    .datum(data)
+                    .attr("class", "area")
+                    .attr("d", area);
+
+                g.append("path")
+                    .datum(data)
+                    .attr("class", "line")
+                    .attr("d", line);
+
+                // X Axis
+                g.append("g")
+                    .attr("class", "axis x-axis")
+                    .attr("transform", `translate(0,${height})`)
+                    .call(d3.axisBottom(x).ticks(5).tickFormat(d3.timeFormat("%b %d")));
+
+                // Y Axis
+                g.append("g")
+                    .attr("class", "axis y-axis")
+                    .call(d3.axisLeft(y).ticks(5));
+            }
+
+            // Draw chart initially and on window resize
+            function redrawChart() {
+                // Clear existing chart elements before redrawing
+                d3.select("#forexChart").selectAll("*").remove();
+                drawForexChart();
+            }
+
+            // Only draw chart when the "About Forex Trade" section is active
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting && entry.target.id === 'about-forex-section') {
+                        redrawChart();
+                    }
+                });
+            }, { threshold: 0.5 }); // Trigger when 50% of the section is visible
+
+            const aboutSection = document.getElementById('about-forex-section');
+            if (aboutSection) {
+                observer.observe(aboutSection);
+            }
+
+            window.addEventListener('resize', redrawChart);
         });
     </script>
 </body>
