@@ -12,7 +12,7 @@
     <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
     
-    <!-- Google Fonts - Using Inter for a modern, clean look -->
+    <!-- Google Fonts - Using Inter for a modern, clean look, with font-display=swap -->
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
     
@@ -241,6 +241,10 @@
 
         /* Specific styling for the hero video preview image */
         .hero-video-preview {
+            /* To help with CLS, ensure the image doesn't cause reflows */
+            display: block; 
+            max-width: 100%; 
+            height: auto; /* Maintain aspect ratio */
             width: 80%; /* Adjust width relative to container */
             max-width: 600px; /* Max width */
             margin-top: 3rem; /* Space from buttons */
@@ -252,6 +256,13 @@
         .hero-video-preview:hover {
             transform: translateY(-5px) scale(1.02);
         }
+        /* For Copy Trading Dashboard image */
+        .copy-history img {
+            display: block;
+            max-width: 100%;
+            height: auto; /* Maintain aspect ratio */
+        }
+
         /* Media Queries for Hero Section Specifics */
         @media (max-width: 767px) {
             .hero-content h1 {
@@ -301,8 +312,9 @@
         .text-footer-text {
             color: #e0e0e0;
         }
-        .text-gray-500 { /* For copyright text */
-            color: #b0b0b0;
+        /* Adjusted for copyright text for better contrast */
+        .text-gray-500 { 
+            color: #a0a0a0; /* Lighter shade for better contrast */
         }
         /* Adjusted background for contrast */
         .bg-section-bg-even {
@@ -330,7 +342,8 @@
                     <li><a href="#contact" class="text-header-text hover:text-color-accent transition-colors duration-200 text-lg font-medium">Contact</a></li>
                 </ul>
             </nav>
-            <!-- Accessibility: Added role="button" for better semantics if this button doesn't navigate directly -->
+            <!-- Accessibility: Using a true button for action, or keeping as link with role="button" but ensuring navigability. -->
+            <!-- For "Start Trading" as it links to #affiliate, it's more of a link, so keeping it as <a> with role="button" is fine for visual button appearance. -->
             <a href="#affiliate" class="hidden md:inline-block px-6 py-3 rounded-full bg-gradient-button text-white font-semibold text-lg transition-all duration-300 transform hover:-translate-y-1 shadow-lg hover:shadow-xl" role="button">
                 Start Trading
             </a>
@@ -354,7 +367,7 @@
                 <a href="#faq" class="text-gray-100 hover:text-color-accent transition-colors duration-200" onclick="closeMobileMenu()">Got Questions?</a>
                 <a href="#contact" class="text-gray-100 hover:text-color-accent transition-colors duration-200" onclick="closeMobileMenu()">Contact</a>
             </nav>
-            <!-- Accessibility: Added role="button" for better semantics -->
+            <!-- Accessibility: Using a true button for action, or keeping as link with role="button" but ensuring navigability. -->
             <a href="#affiliate" class="px-8 py-4 rounded-full bg-gradient-button text-white font-semibold text-xl transition-all duration-300 transform hover:-translate-y-1 shadow-lg hover:shadow-xl" onclick="closeMobileMenu()" role="button">
                 Start Trading
             </a>
@@ -372,8 +385,8 @@
                 <p>
                     FXBusiness empowers you to access global forex markets, whether you're a seasoned trader or just starting with our cutting-edge copy trading technology.
                 </p>
-                <!-- Image Optimization: Added width, height, and loading="lazy" -->
-                <img src="https://placehold.co/600x350/2d3748/cbd5e0?text=Trading+Platform+Preview" alt="Trading Platform Preview" class="hero-video-preview mx-auto" width="600" height="350" loading="lazy">
+                <!-- Image Optimization: Removed loading="lazy" and added fetchpriority="high" for LCP image -->
+                <img src="https://placehold.co/600x350/2d3748/cbd5e0?text=Trading+Platform+Preview" alt="Trading Platform Preview" class="hero-video-preview mx-auto" width="600" height="350" fetchpriority="high">
             </div>
         </div>
     </section>
@@ -561,7 +574,8 @@
                     <div class="flex items-center space-x-4">
                         <div class="w-14 h-14 bg-color-accent text-white rounded-full flex items-center justify-center text-xl font-bold">JD</div>
                         <div>
-                            <h4 class="text-lg font-semibold text-gray-100">James D.</h4>
+                            <!-- Accessibility: Changed h4 to p for proper heading hierarchy -->
+                            <p class="text-lg font-semibold text-gray-100">James D.</p>
                             <p class="text-gray-400 text-sm">Copy Trader since 2022</p>
                         </div>
                     </div>
@@ -575,7 +589,8 @@
                     <div class="flex items-center space-x-4">
                         <div class="w-14 h-14 bg-green-500 text-white rounded-full flex items-center justify-center text-xl font-bold">SM</div>
                         <div>
-                            <h4 class="text-lg font-semibold text-gray-100">Sarah M.</h4>
+                            <!-- Accessibility: Changed h4 to p for proper heading hierarchy -->
+                            <p class="text-lg font-semibold text-gray-100">Sarah M.</p>
                             <p class="text-gray-400 text-sm">Investor since 2021</p>
                         </div>
                     </div>
@@ -589,7 +604,8 @@
                     <div class="flex items-center space-x-4">
                         <div class="w-14 h-14 bg-yellow-500 text-white rounded-full flex items-center justify-center text-xl font-bold">RK</div>
                         <div>
-                            <h4 class="text-lg font-semibold text-gray-100">Robert K.</h4>
+                            <!-- Accessibility: Changed h4 to p for proper heading hierarchy -->
+                            <p class="text-lg font-semibold text-gray-100">Robert K.</p>
                             <p class="text-gray-400 text-sm">Trader & Investor</p>
                         </div>
                     </div>
@@ -602,7 +618,8 @@
                     <div class="flex items-center space-x-4">
                         <div class="w-14 h-14 bg-purple-500 text-white rounded-full flex items-center justify-center text-xl font-bold">AL</div>
                         <div>
-                            <h4 class="text-lg font-semibold text-gray-100">Alice L.</h4>
+                            <!-- Accessibility: Changed h4 to p for proper heading hierarchy -->
+                            <p class="text-lg font-semibold text-gray-100">Alice L.</p>
                             <p class="text-gray-400 text-sm">New Trader, 2023</p>
                         </div>
                     </div>
@@ -615,7 +632,8 @@
                     <div class="flex items-center space-x-4">
                         <div class="w-14 h-14 bg-orange-500 text-white rounded-full flex items-center justify-center text-xl font-bold">MB</div>
                         <div>
-                            <h4 class="text-lg font-semibold text-gray-100">Michael B.</h4>
+                            <!-- Accessibility: Changed h4 to p for proper heading hierarchy -->
+                            <p class="text-lg font-semibold text-gray-100">Michael B.</p>
                             <p class="text-gray-400 text-sm">Experienced Trader</p>
                         </div>
                     </div>
