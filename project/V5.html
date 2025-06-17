@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+<html lang="en" class="dark"> <!-- Defaulted to 'dark' theme -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FXBusiness | Professional Forex Trading & Copy Trading</title>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts - Using Inter for a modern, clean look -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Dark Theme Colors - Now the default, updated for Apple UI feel */
+        :root {
+            --color-primary: #e0e0e0; /* Lighter text for contrast */
+            --color-secondary: #c0c0c0; /* Slightly darker secondary text/elements */
+            --color-accent: #007aff; /* Apple Blue for accent */
+            --color-bg: #1c1c1e; /* Deep dark gray for overall page background (similar to iOS dark mode) */
+            --color-gray: #3a3a3c; /* Mid-tone gray for subtle divisions */
+            --color-white: #000000; /* True black where needed */
+            --color-text-dark: #f2f2f7; /* Very light text for main headings */
+            --color-text-light: #a0a0a8; /* Lighter gray for body text, slightly desaturated */
+            --color-border: #48484a; /* Darker border for separation */
+
+            /* Liquid Glass specific colors and properties, adapted for Apple UI */
+            --liquid-surface-bg: rgba(58, 58, 60, 0.4); /* Semi-transparent background for glass elements, based on --color-gray */
+            --liquid-surface-border: rgba(0, 122, 255, 0.3); /* Subtle accent border, based on --color-accent */
+            --liquid-surface-shadow: rgba(0, 0, 0, 0.3); /* Deeper shadow for floating effect */
+            --liquid-backdrop-blur: 25px; /* Stronger blur for liquid glass */
+            --liquid-saturation: 170%; /* Boost saturation of underlying content, slightly adjusted */
+
+            --header-bg: rgba(28, 28, 30, 0.8); /* Header background, more opaque */
+            --header-text: #f2f2f7; /* Header text matches --color-text-dark */
+            --hero-bg: #1c1c1e; /* Solid dark background for hero */
+            --card-bg: var(--liquid-surface-bg); /* Use liquid surface for cards */
+            --section-bg-even: #1c1c1e; /* Dark background for even sections */
+            --section-bg-odd: #2c2c2e; /* Slightly lighter dark for odd sections */
+            --footer-bg: #000000; /* Deep black for footer */
+            --footer-text: #e0e0e0; /* Footer text */
+            --faq-bg: var(--liquid-surface-bg); /* Use liquid surface for FAQ items */
+            --faq-text: var(--color-text-dark);
+            --faq-border: var(--liquid-surface-border); /* Use liquid surface border for FAQ */
+            --input-bg: var(--liquid-surface-bg); /* Use liquid surface for inputs */
+            --input-text: var(--color-text-dark); /* Input text color */
+            --input-placeholder: var(--color-text-light); /* Input placeholder color */
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--color-text-light);
+            background-color: var(--color-bg);
+            overflow-x: hidden; /* Prevent horizontal scrolling */
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Inter', sans-serif;
+            color: var(--color-text-dark);
+            font-weight: 700;
+            transition: color 0.3s ease;
+        }
+
+        .container {
+            max-width: 1280px; /* Wider container for more expansive feel */
+        }
+
+        /* Custom utility for subtle shadow on elements like cards */
+        .shadow-custom {
+            box-shadow: 0 10px 30px var(--liquid-surface-shadow), 0 5px 15px rgba(0, 0, 0, 0.15); /* Enhanced shadow for depth */
+        }
+
+        /* Animation for elements on scroll */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Specific styles for subtle gradients often seen on modern sites */
+        .bg-gradient-button {
+            background-image: linear-gradient(to right, var(--color-accent), #4a90e2); /* Adjusted gradient to be more Apple-like blue */
+            box-shadow: 0 4px 15px rgba(0, 122, 255, 0.4); /* Accent color shadow */
+        }
+        .bg-gradient-button:hover {
+            background-image: linear-gradient(to left, var(--color-accent), #4a90e2);
+            box-shadow: 0 6px 20px rgba(0, 122, 255, 0.6);
+        }
+        
+        /* Hero Section Styling - Updated */
+        .hero {
+            background-color: var(--hero-bg); /* Solid dark background */
+            min-height: 80vh; /* Adjust height to match reference */
+            display: flex;
+            align-items: center;
+            padding-top: 80px; /* Account for fixed header */
+            padding-bottom: 80px;
+            text-align: center;
+        }
+        .hero-content h1 {
+            font-size: 4.5rem; /* Larger font size */
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            color: var(--color-text-dark);
+        }
+        .hero-content p {
+            font-size: 1.5rem; /* Larger sub-text */
+            opacity: 0.9;
+            max-width: 800px; /* Wider text block */
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: 3rem; /* More space before inputs */
+        }
+
+        @media (min-width: 768px) {
+            .hero-input-group {
+                flex-direction: row; /* Row on desktop */
+                gap: 1.5rem;
+            }
+            .hero-input-group input {
+                width: auto; /* Auto width for input */
+            }
+            .hero-buttons {
+                flex-direction: row;
+                width: auto;
+            }
+            .hero-buttons .btn {
+                width: auto;
+            }
+        }
+
+        /* Liquid Glass effect for transparent elements */
+        .liquid-glass-element {
+            background-color: var(--liquid-surface-bg);
+            border: 1px solid var(--liquid-surface-border);
+            backdrop-filter: blur(var(--liquid-backdrop-blur)) saturate(var(--liquid-saturation));
+            -webkit-backdrop-filter: blur(var(--liquid-backdrop-blur)) saturate(var(--liquid-saturation)); /* Safari support */
+            transition: all 0.3s ease; /* Smooth transitions for hover/focus states */
+        }
+
+        /* Transparent Header with Blur (now using liquid-glass-element for consistency) */
+        .header-transparent {
+            background-color: var(--header-bg); /* Keep header bg slightly different for top layer */
+            backdrop-filter: blur(20px) saturate(160%); /* Adjusted blur for header */
+            -webkit-backdrop-filter: blur(20px) saturate(160%);
+        }
+        .header-transparent nav a, .header-transparent .logo, .header-transparent #mobile-menu-button {
+            color: var(--header-text);
+        }
+        .header-transparent nav a:hover, .header-transparent .logo:hover, .header-transparent #mobile-menu-button:hover {
+            color: var(--color-accent);
+        }
+
+        /* FAQ (Got Questions) styles */
+        .faq-item {
+            border-radius: 1.5rem; /* rounded-3xl for more pronounced rounded corners */
+        }
+
+        .faq-question {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem; /* p-6 */
+            font-size: 1.25rem; /* text-xl */
+            font-weight: 600; /* font-semibold */
+            cursor: pointer;
+            color: var(--faq-text);
+            transition: color 0.3s ease;
+        }
+
+        .faq-question:hover {
+            color: var(--color-accent);
+        }
+
+        .faq-answer {
+            padding: 0 1.5rem 1.5rem; /* pb-6 */
+            font-size: 1.125rem; /* text-lg */
+            color: var(--color-text-light);
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out, padding-top 0.4s ease-out;
+        }
+
+        .faq-answer.open {
+            max-height: 500px; /* Sufficiently large value for expansion */
+            padding-top: 1rem; /* pt-4 */
+        }
+        
+        .faq-question .toggle-icon {
+            transform: rotate(0deg);
+            transition: transform 0.3s ease;
+        }
+
+        .faq-question.open .toggle-icon {
+            transform: rotate(180deg);
+        }
+
+        /* Input and Textarea Styling for Dark Theme & Rounded Corners */
+        .contact-form input, 
+        .contact-form textarea {
+            color: var(--input-text);
+            border: 1px solid var(--liquid-surface-border); /* Use liquid glass border */
+            border-radius: 0.75rem; /* rounded-xl */
+            padding: 1rem; /* p-4 */
+            box-shadow: none; /* Remove default shadow */
+        }
+        .contact-form input::placeholder, 
+        .contact-form textarea::placeholder {
+            color: var(--input-placeholder);
+        }
+        /* Apply liquid glass to form inputs */
+        .contact-form input,
+        .contact-form textarea {
+            background-color: var(--liquid-surface-bg);
+            backdrop-filter: blur(var(--liquid-backdrop-blur)) saturate(var(--liquid-saturation));
+            -webkit-backdrop-filter: blur(var(--liquid-backdrop-blur)) saturate(var(--liquid-saturation));
+        }
+
+
+        /* Responsive Rounded Corners for Cards and Buttons */
+        .card, .stat-item {
+            border-radius: 1.5rem; /* rounded-3xl */
+        }
+
+        .btn, .hero-btns a {
+            border-radius: 9999px; /* rounded-full */
+        }
+
+        /* Specific styling for the hero video preview image */
+        .hero-video-preview {
+            width: 80%; /* Adjust width relative to container */
+            max-width: 600px; /* Max width */
+            margin-top: 3rem; /* Space from buttons */
+            border-radius: 1.5rem; /* Rounded corners */
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3); /* Deeper shadow */
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+        .hero-video-preview:hover {
+            transform: translateY(-5px) scale(1.02);
+        }
+        /* Media Queries for Hero Section Specifics */
+        @media (max-width: 767px) {
+            .hero-content h1 {
+                font-size: 3rem; /* Adjust for smaller screens */
+            }
+            .hero-content p {
+                font-size: 1.25rem;
+            }
+        }
+
+        /* Testimonials Section Specific Styles - Now a responsive grid */
+        .testimonials-grid {
+            display: grid; /* Use grid for layout */
+            grid-template-columns: 1fr; /* Single column on small screens */
+            gap: 2rem; /* Space between testimonial cards */
+            max-width: 1280px; /* Constrain width */
+            margin-left: auto; /* Center the grid */
+            margin-right: auto;
+        }
+
+        @media (min-width: 768px) {
+            .testimonials-grid {
+                grid-template-columns: repeat(2, 1fr); /* Two columns on medium screens */
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .testimonials-grid {
+                grid-template-columns: repeat(3, 1fr); /* Three columns on large screens */
+            }
+        }
+
+        .testimonial {
+            width: auto; /* Allow items to fill grid columns */
+        }
+    </style>
+</head>
+<body class="bg-section-bg-even text-color-text-light">
+    <!-- Header -->
+    <header class="header-transparent shadow-md py-4 fixed w-full z-50 transition-all duration-300">
+        <div class="container mx-auto px-4 flex justify-between items-center">
+            <a href="#" class="flex items-center space-x-2 text-xl font-bold text-header-text">
+                <i class="fas fa-chart-line text-color-accent text-2xl"></i>
+                <span>FX<span class="text-color-accent">Business</span></span>
+            </a>
+            <nav class="hidden md:block">
+                <ul class="flex space-x-8">
+                    <li><a href="#about" class="text-header-text hover:text-color-accent transition-colors duration-200 text-lg font-medium">About Forex</a></li>
+                    <li><a href="#requirements" class="text-header-text hover:text-color-accent transition-colors duration-200 text-lg font-medium">How to Trade</a></li>
+                    <li><a href="#copy-trading" class="text-header-text hover:text-color-accent transition-colors duration-200 text-lg font-medium">Copy Trading</a></li>
+                    <li><a href="#faq" class="text-header-text hover:text-color-accent transition-colors duration-200 text-lg font-medium">Got Questions?</a></li>
+                    <li><a href="#contact" class="text-header-text hover:text-color-accent transition-colors duration-200 text-lg font-medium">Contact</a></li>
+                </ul>
+            </nav>
+            <a href="#affiliate" class="hidden md:inline-block px-6 py-3 rounded-full bg-gradient-button text-white font-semibold text-lg transition-all duration-300 transform hover:-translate-y-1 shadow-lg hover:shadow-xl">
+                Start Trading
+            </a>
+            
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-button" class="md:hidden text-header-text hover:text-color-accent focus:outline-none">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+        </div>
+        <!-- Mobile Menu Overlay -->
+        <div id="mobile-menu" class="hidden md:hidden fixed inset-0 z-40 flex flex-col items-center justify-center space-y-8 liquid-glass-element">
+            <button id="close-mobile-menu" class="absolute top-8 right-8 text-gray-300 hover:text-color-accent focus:outline-none">
+                <i class="fas fa-times text-3xl"></i>
+            </button>
+            <nav class="flex flex-col space-y-6 text-2xl font-semibold">
+                <a href="#about" class="text-gray-100 hover:text-color-accent transition-colors duration-200" onclick="closeMobileMenu()">About Forex</a>
+                <a href="#requirements" class="text-gray-100 hover:text-color-accent transition-colors duration-200" onclick="closeMobileMenu()">Requirements</a>
+                <a href="#how-to-trade" class="text-gray-100 hover:text-color-accent transition-colors duration-200" onclick="closeMobileMenu()">How to Trade</a>
+                <a href="#copy-trading" class="text-gray-100 hover:text-color-accent transition-colors duration-200" onclick="closeMobileMenu()">Copy Trading</a>
+                <a href="#faq" class="text-gray-100 hover:text-color-accent transition-colors duration-200" onclick="closeMobileMenu()">Got Questions?</a>
+                <a href="#contact" class="text-gray-100 hover:text-color-accent transition-colors duration-200" onclick="closeMobileMenu()">Contact</a>
+            </nav>
+            <a href="#affiliate" class="px-8 py-4 rounded-full bg-gradient-button text-white font-semibold text-xl transition-all duration-300 transform hover:-translate-y-1 shadow-lg hover:shadow-xl" onclick="closeMobileMenu()">
+                Start Trading
+            </a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container mx-auto px-4">
+            <div class="hero-content max-w-4xl mx-auto animate-on-scroll">
+                <h1 class="font-extrabold">
+                    One <span class="text-color-accent">Trading Platform</span>, <br class="hidden sm:inline">Limitless Opportunities.
+                </h1>
+                <p>
+                    FXBusiness empowers you to access global forex markets, whether you're a seasoned trader or just starting with our cutting-edge copy trading technology.
+                </p>
+                <!-- Placeholder for the video preview image -->
+                <img src="https://placehold.co/600x350/2d3748/cbd5e0?text=Trading+Platform+Preview" alt="Trading Platform Preview" class="hero-video-preview mx-auto">
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="py-20 bg-section-bg-odd">
+        <div class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div class="stat-item text-center p-6 rounded-3xl shadow-custom animate-on-scroll liquid-glass-element">
+                <div class="text-5xl font-bold text-color-accent mb-2">$6T+</div>
+                <div class="text-lg font-medium text-gray-300">Daily Trading Volume</div>
+            </div>
+            <div class="stat-item text-center p-6 rounded-3xl shadow-custom animate-on-scroll liquid-glass-element" style="transition-delay: 0.1s;">
+                <div class="text-5xl font-bold text-color-accent mb-2">24/7</div>
+                <div class="text-lg font-medium text-gray-300">Market Access</div>
+            </div>
+            <div class="stat-item text-center p-6 rounded-3xl shadow-custom animate-on-scroll liquid-glass-element" style="transition-delay: 0.2s;">
+                <div class="text-5xl font-bold text-color-accent mb-2">170+</div>
+                <div class="text-lg font-medium text-gray-300">Currency Pairs</div>
+            </div>
+            <div class="stat-item text-center p-6 rounded-3xl shadow-custom animate-on-scroll liquid-glass-element" style="transition-delay: 0.3s;">
+                <div class="text-5xl font-bold text-color-accent mb-2">10M+</div>
+                <div class="text-lg font-medium text-gray-300">Traders Worldwide</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Forex Section -->
+    <section id="about" class="py-24 bg-section-bg-odd">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16 animate-on-scroll">
+                <h2 class="text-4xl font-bold text-gray-100 mb-4">Understanding Forex Trading</h2>
+                <p class="text-xl text-gray-300 max-w-2xl mx-auto">
+                    The foreign exchange market is where currencies are traded. It's the most liquid market in the world with an average daily trading volume exceeding $6 trillion.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="card rounded-3xl shadow-custom overflow-hidden transition-all duration-300 hover:shadow-xl hover:scale-105 animate-on-scroll liquid-glass-element">
+                    <div class="p-8">
+                        <div class="w-16 h-16 bg-indigo-700 text-white rounded-full flex items-center justify-center text-3xl mb-6">
+                            <i class="fas fa-money-bill-wave"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-100 mb-4">Currency Pairs</h3>
+                        <p class="text-gray-300 leading-relaxed">Forex trading involves buying one currency while selling another. Major pairs like EUR/USD and GBP/USD dominate trading volume with tight spreads.</p>
+                    </div>
+                </div>
+                
+                <div class="card rounded-3xl shadow-custom overflow-hidden transition-all duration-300 hover:shadow-xl hover:scale-105 animate-on-scroll liquid-glass-element" style="transition-delay: 0.1s;">
+                    <div class="p-8">
+                        <div class="w-16 h-16 bg-indigo-700 text-white rounded-full flex items-center justify-center text-3xl mb-6">
+                            <i class="fas fa-exchange-alt"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-100 mb-4">Market Liquidity</h3>
+                        <p class="text-gray-300 leading-relaxed">The forex market's enormous size means you can enter and exit positions quickly with minimal price fluctuations in major currency pairs.</p>
+                    </div>
+                </div>
+                
+                <div class="card rounded-3xl shadow-custom overflow-hidden transition-all duration-300 hover:shadow-xl hover:scale-105 animate-on-scroll liquid-glass-element" style="transition-delay: 0.2s;">
+                    <div class="p-8">
+                        <div class="w-16 h-16 bg-indigo-700 text-white rounded-full flex items-center justify-center text-3xl mb-6">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-100 mb-4">24/5 Trading</h3>
+                        <p class="text-gray-300 leading-relaxed">The forex market operates 24 hours a day, five days a week across major financial centers worldwide, allowing flexible trading times.</p>
+                    </div>
+                </div>
+                
+                <div class="card rounded-3xl shadow-custom overflow-hidden transition-all duration-300 hover:shadow-xl hover:scale-105 animate-on-scroll liquid-glass-element" style="transition-delay: 0.3s;">
+                    <div class="p-8">
+                        <div class="w-16 h-16 bg-indigo-700 text-white rounded-full flex items-center justify-center text-3xl mb-6">
+                            <i class="fas fa-globe"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-100 mb-4">Global Market</h3>
+                        <p class="text-gray-300 leading-relaxed">Forex trading connects participants from all over the world, including banks, corporations, governments, and individual traders.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Forex Copy Trading Section -->
+    <section id="copy-trading" class="py-24 bg-section-bg-even">
+        <div class="container mx-auto px-4 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <div class="copy-content animate-on-scroll">
+                <h2 class="text-4xl font-bold text-gray-100 mb-6">FXBusiness Copy Trading</h2>
+                <p class="text-xl text-gray-300 mb-10">
+                    Our innovative copy trading platform lets you automatically replicate the trades of experienced forex traders in real time.
+                </p>
+                
+                <div class="space-y-8">
+                    <div class="step flex items-start space-x-4">
+                        <div class="w-12 h-12 bg-indigo-600 text-white rounded-full flex items-center justify-center text-xl font-bold flex-shrink-0 shadow-lg">1</div>
+                        <div>
+                            <h4 class="text-xl font-semibold text-gray-100 mb-2">Browse Top Traders</h4>
+                            <p class="text-gray-300">Review performance statistics, risk levels, and trading strategies of our verified expert traders.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="step flex items-start space-x-4">
+                        <div class="w-12 h-12 bg-indigo-600 text-white rounded-full flex items-center justify-center text-xl font-bold flex-shrink-0 shadow-lg">2</div>
+                        <div>
+                            <h4 class="text-xl font-semibold text-gray-100 mb-2">Allocate Funds</h4>
+                            <p class="text-gray-300">Decide how much capital to allocate to each trader. You maintain full control over your investment amounts.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="step flex items-start space-x-4">
+                        <div class="w-12 h-12 bg-indigo-600 text-white rounded-full flex items-center justify-center text-xl font-bold flex-shrink-0 shadow-lg">3</div>
+                        <div>
+                            <h4 class="text-xl font-semibold text-gray-100 mb-2">Automate & Profit</h4>
+                            <p class="text-gray-300">Every trade your selected traders make is instantly copied to your account with the same entry/exit prices.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-12">
+                    <div class="advantage p-4 rounded-xl flex items-center space-x-3 shadow-sm liquid-glass-element">
+                        <i class="fas fa-check-circle text-green-500 text-xl"></i>
+                        <div class="text-gray-200 font-medium">No Trading Experience Needed</div>
+                    </div>
+                    <div class="advantage p-4 rounded-xl flex items-center space-x-3 shadow-sm liquid-glass-element">
+                        <i class="fas fa-check-circle text-green-500 text-xl"></i>
+                        <div class="text-gray-200 font-medium">Proportional Profit Sharing</div>
+                    </div>
+                    <div class="advantage p-4 rounded-xl flex items-center space-x-3 shadow-sm liquid-glass-element">
+                        <i class="fas fa-check-circle text-green-500 text-xl"></i>
+                        <div class="text-gray-200 font-medium">Full Withdrawal Control</div>
+                    </div>
+                    <div class="advantage p-4 rounded-xl flex items-center space-x-3 shadow-sm liquid-glass-element">
+                        <i class="fas fa-check-circle text-green-500 text-xl"></i>
+                        <div class="text-gray-200 font-medium">Risk Management Tools</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="copy-history animate-on-scroll lg:pl-16">
+                <img src="https://placehold.co/600x400/2d3748/cbd5e0?text=Copy+Trading+Dashboard" alt="Copy Trading Dashboard" class="rounded-3xl shadow-lg mb-8 w-full">
+                <h3 class="text-3xl font-bold text-gray-100 mb-4">Why Choose FXBusiness Copy Trading?</h3>
+                <p class="text-gray-300 leading-relaxed mb-6">Our platform connects you with carefully vetted traders who have demonstrated consistent profitability over time:</p>
+                <ul class="list-disc list-inside space-y-3 text-lg text-gray-300 mb-10">
+                    <li><strong class="text-gray-200">Performance Verified:</strong> All stats are real and auditable</li>
+                    <li><strong class="text-gray-200">Diverse Strategies:</strong> Choose from various trading styles and risk levels</li>
+                    <li><strong class="text-gray-200">Transparent Fees:</strong> Clear commission structure with no hidden costs</li>
+                </ul>
+                
+                <div id="affiliate" class="affiliate-box rounded-3xl p-8 text-center text-white shadow-xl animate-on-scroll liquid-glass-element">
+                    <h3 class="text-3xl font-bold mb-4">Start Copy Trading Today!</h3>
+                    <p class="text-lg opacity-90 mb-6">Join our community of successful traders and investors. Get started with just $100.</p>
+                    <a href="YOUR_AFFILIATE_LINK_HERE" target="_blank" class="inline-block px-8 py-4 rounded-full bg-white text-color-accent font-bold text-lg transition-all duration-300 transform hover:scale-105 shadow-md">
+                        Sign Up Now
+                    </a>
+                    <p class="text-sm opacity-80 mt-4">(You'll be redirected to our trusted broker partner)</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="py-24 bg-section-bg-odd">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16 animate-on-scroll">
+                <h2 class="text-4xl font-bold text-gray-100 mb-4">Success Stories</h2>
+                <p class="text-xl text-gray-300 max-w-2xl mx-auto">
+                    Hear from traders who have transformed their financial journey with FXBusiness
+                </p>
+            </div>
+            
+            <div class="testimonials-grid">
+                <div class="testimonial rounded-3xl shadow-custom relative animate-on-scroll liquid-glass-element">
+                    <div class="absolute -top-4 -left-4 text-gray-700 text-8xl font-serif z-0 leading-none">“</div>
+                    <p class="text-lg text-gray-300 leading-relaxed mb-6 relative z-10">
+                        "I started with just $500 and was able to grow my account by 27% in my first three months using FXBusiness's copy trading. The platform is incredibly user-friendly."
+                    </p>
+                    <div class="flex items-center space-x-4">
+                        <div class="w-14 h-14 bg-color-accent text-white rounded-full flex items-center justify-center text-xl font-bold">JD</div>
+                        <div>
+                            <h4 class="text-lg font-semibold text-gray-100">James D.</h4>
+                            <p class="text-gray-400 text-sm">Copy Trader since 2022</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial rounded-3xl shadow-custom relative animate-on-scroll liquid-glass-element" style="transition-delay: 0.1s;">
+                    <div class="absolute -top-4 -left-4 text-gray-700 text-8xl font-serif z-0 leading-none">“</div>
+                    <p class="text-lg text-gray-300 leading-relaxed mb-6 relative z-10">
+                        "As a full-time employee, I don't have time to trade actively. FXBusiness's copy trading lets me participate in forex markets passively while focusing on my career."
+                    </p>
+                    <div class="flex items-center space-x-4">
+                        <div class="w-14 h-14 bg-green-500 text-white rounded-full flex items-center justify-center text-xl font-bold">SM</div>
+                        <div>
+                            <h4 class="text-lg font-semibold text-gray-100">Sarah M.</h4>
+                            <p class="text-gray-400 text-sm">Investor since 2021</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial rounded-3xl shadow-custom relative animate-on-scroll liquid-glass-element" style="transition-delay: 0.2s;">
+                    <div class="absolute -top-4 -left-4 text-gray-700 text-8xl font-serif z-0 leading-none">“</div>
+                    <p class="text-lg text-gray-300 leading-relaxed mb-6 relative z-10">
+                        "The educational resources combined with the copy trading platform helped me understand forex while earning. Now I trade independently but still use copy trading for diversification."
+                    </p>
+                    <div class="flex items-center space-x-4">
+                        <div class="w-14 h-14 bg-yellow-500 text-white rounded-full flex items-center justify-center text-xl font-bold">RK</div>
+                        <div>
+                            <h4 class="text-lg font-semibold text-gray-100">Robert K.</h4>
+                            <p class="text-gray-400 text-sm">Trader & Investor</p>
+                        </div>
+                    </div>
+                </div>
+                 <div class="testimonial rounded-3xl shadow-custom relative animate-on-scroll liquid-glass-element">
+                    <div class="absolute -top-4 -left-4 text-gray-700 text-8xl font-serif z-0 leading-none">“</div>
+                    <p class="text-lg text-gray-300 leading-relaxed mb-6 relative z-10">
+                        "FXBusiness has revolutionized my trading experience. The copy trading feature is a game-changer, allowing me to learn from the best without constant monitoring."
+                    </p>
+                    <div class="flex items-center space-x-4">
+                        <div class="w-14 h-14 bg-purple-500 text-white rounded-full flex items-center justify-center text-xl font-bold">AL</div>
+                        <div>
+                            <h4 class="text-lg font-semibold text-gray-100">Alice L.</h4>
+                            <p class="text-gray-400 text-sm">New Trader, 2023</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial rounded-3xl shadow-custom relative animate-on-scroll liquid-glass-element">
+                    <div class="absolute -top-4 -left-4 text-gray-700 text-8xl font-serif z-0 leading-none">“</div>
+                    <p class="text-lg text-gray-300 leading-relaxed mb-6 relative z-10">
+                        "The platform is intuitive, and the support is exceptional. I highly recommend FXBusiness to anyone looking to get into forex trading or enhance their existing portfolio."
+                    </p>
+                    <div class="flex items-center space-x-4">
+                        <div class="w-14 h-14 bg-orange-500 text-white rounded-full flex items-center justify-center text-xl font-bold">MB</div>
+                        <div>
+                            <h4 class="text-lg font-semibold text-gray-100">Michael B.</h4>
+                            <p class="text-gray-400 text-sm">Experienced Trader</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How to Trade Section -->
+    <section id="how-to-trade" class="py-24 bg-section-bg-even">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16 animate-on-scroll">
+                <h2 class="text-4xl font-bold text-gray-100 mb-4">How Forex Trading Works</h2>
+                <p class="text-xl text-gray-300 max-w-2xl mx-auto">
+                    Follow these simple steps to start your trading journey with FXBusiness
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 text-center">
+                <div class="step-item animate-on-scroll">
+                    <div class="w-24 h-24 bg-color-accent text-white rounded-full flex items-center justify-center text-4xl mx-auto mb-6 shadow-md transition-all duration-300 hover:scale-110">
+                        <i class="fas fa-user-plus"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-100 mb-3">Create Account</h3>
+                    <p class="text-gray-300">Complete our quick registration and verify your identity</p>
+                </div>
+                
+                <div class="step-item animate-on-scroll" style="transition-delay: 0.1s;">
+                    <div class="w-24 h-24 bg-color-accent text-white rounded-full flex items-center justify-center text-4xl mx-auto mb-6 shadow-md transition-all duration-300 hover:scale-110">
+                        <i class="fas fa-wallet"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-100 mb-3">Fund Account</h3>
+                    <p class="text-gray-300">Deposit funds via bank transfer, credit card, or e-wallet</p>
+                </div>
+                
+                <div class="step-item animate-on-scroll" style="transition-delay: 0.2s;">
+                    <div class="w-24 h-24 bg-color-accent text-white rounded-full flex items-center justify-center text-4xl mx-auto mb-6 shadow-md transition-all duration-300 hover:scale-110">
+                        <i class="fas fa-chart-bar"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-100 mb-3">Choose Strategy</h3>
+                    <p class="text-gray-300">Select manual trading or copy trading based on your preference</p>
+                </div>
+                
+                <div class="step-item animate-on-scroll" style="transition-delay: 0.3s;">
+                    <div class="w-24 h-24 bg-color-accent text-white rounded-full flex items-center justify-center text-4xl mx-auto mb-6 shadow-md transition-all duration-300 hover:scale-110">
+                        <i class="fas fa-trade"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-100 mb-3">Start Trading</h3>
+                    <p class="text-gray-300">Execute trades or select traders to copy based on performance</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Account Requirements Section -->
+    <section id="requirements" class="py-24 bg-section-bg-odd">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16 animate-on-scroll">
+                <h2 class="text-4xl font-bold text-gray-100 mb-4">Account Requirements</h2>
+                <p class="text-xl text-gray-300 max-w-2xl mx-auto">
+                    Getting started with FXBusiness is simple and straightforward
+                </p>
+            </div>
+            
+            <div class="max-w-3xl mx-auto space-y-6">
+                <div class="requirement p-6 rounded-3xl shadow-custom flex items-center space-x-6 transition-all duration-300 hover:shadow-lg hover:translate-x-2 animate-on-scroll liquid-glass-element">
+                    <div class="w-16 h-16 bg-color-accent text-white rounded-full flex items-center justify-center text-3xl flex-shrink-0">
+                        <i class="fas fa-id-card"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-gray-100 mb-2">Identification</h3>
+                        <p class="text-gray-300">Valid government-issued ID (passport, driver's license, or national ID)</p>
+                    </div>
+                </div>
+                
+                <div class="requirement p-6 rounded-3xl shadow-custom flex items-center space-x-6 transition-all duration-300 hover:shadow-lg hover:translate-x-2 animate-on-scroll liquid-glass-element" style="transition-delay: 0.1s;">
+                    <div class="w-16 h-16 bg-color-accent text-white rounded-full flex items-center justify-center text-3xl flex-shrink-0">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-gray-100 mb-2">Proof of Residence</h3>
+                        <p class="text-gray-300">Recent utility bill or bank statement (within last 3 months)</p>
+                    </div>
+                </div>
+                
+                <div class="requirement p-6 rounded-3xl shadow-custom flex items-center space-x-6 transition-all duration-300 hover:shadow-lg hover:translate-x-2 animate-on-scroll liquid-glass-element" style="transition-delay: 0.2s;">
+                    <div class="w-16 h-16 bg-color-accent text-white rounded-full flex items-center justify-center text-3xl flex-shrink-0">
+                        <i class="fas fa-dollar-sign"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-gray-100 mb-2">Minimum Deposit</h3>
+                        <p class="text-gray-300">$100 to start trading (varies by account type)</p>
+                    </div>
+                </div>
+                
+                <div class="requirement p-6 rounded-3xl shadow-custom flex items-center space-x-6 transition-all duration-300 hover:shadow-lg hover:translate-x-2 animate-on-scroll liquid-glass-element" style="transition-delay: 0.3s;">
+                    <div class="w-16 h-16 bg-color-accent text-white rounded-full flex items-center justify-center text-3xl flex-shrink-0">
+                        <i class="fas fa-laptop"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-gray-100 mb-2">Device</h3>
+                        <p class="text-gray-300">Computer or smartphone with internet access</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Got Questions? Section (FAQ) -->
+    <section id="faq" class="py-24 bg-section-bg-even">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16 animate-on-scroll">
+                <h2 class="text-4xl font-bold text-gray-100 mb-4">Got Questions?</h2>
+                <p class="text-xl text-gray-300 max-w-2xl mx-auto">
+                    Find answers to the most common questions about FXBusiness and our services.
+                </p>
+            </div>
+
+            <div class="max-w-3xl mx-auto space-y-4">
+                <div class="faq-item animate-on-scroll liquid-glass-element">
+                    <div class="faq-question">
+                        How does FXBusiness work?
+                        <i class="fas fa-chevron-down toggle-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        FXBusiness offers both direct forex trading and a copy trading platform. You can either trade manually using our tools or automatically replicate the trades of expert traders.
+                    </div>
+                </div>
+
+                <div class="faq-item animate-on-scroll liquid-glass-element" style="transition-delay: 0.1s;">
+                    <div class="faq-question">
+                        What types of accounts can I open?
+                        <i class="fas fa-chevron-down toggle-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        We offer various account types tailored to different experience levels and investment sizes, including Standard, ECN, and Islamic accounts. Details are available on our platform.
+                    </div>
+                </div>
+
+                <div class="faq-item animate-on-scroll liquid-glass-element" style="transition-delay: 0.2s;">
+                    <div class="faq-question">
+                        Is copy trading risky?
+                        <i class="fas fa-chevron-down toggle-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        All trading involves risk. While copy trading allows you to leverage the experience of professional traders, past performance is not indicative of future results. We provide risk management tools to help you manage your exposure.
+                    </div>
+                </div>
+
+                <div class="faq-item animate-on-scroll liquid-glass-element" style="transition-delay: 0.3s;">
+                    <div class="faq-question">
+                        How can I deposit and withdraw funds?
+                        <i class="fas fa-chevron-down toggle-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        You can deposit and withdraw funds using various methods, including bank transfers, credit/debit cards, and popular e-wallets. Processing times vary by method.
+                    </div>
+                </div>
+
+                <div class="faq-item animate-on-scroll liquid-glass-element" style="transition-delay: 0.4s;">
+                    <div class="faq-question">
+                        Do you provide educational resources?
+                        <i class="fas fa-chevron-down toggle-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        Yes, FXBusiness is committed to educating our traders. We offer a comprehensive library of resources, including articles, video tutorials, webinars, and market analysis.
+                    </div>
+                </div>
+
+                <div class="faq-item animate-on-scroll liquid-glass-element" style="transition-delay: 0.5s;">
+                    <div class="faq-question">
+                        I have more questions!
+                        <i class="fas fa-chevron-down toggle-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        Please feel free to contact our 24/5 support team via live chat, email, or phone. We're here to assist you with any inquiries you may have.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-24 bg-section-bg-even text-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16 animate-on-scroll">
+                <h2 class="text-4xl font-bold text-white mb-4">Contact FXBusiness</h2>
+                <p class="text-xl opacity-90 max-w-2xl mx-auto">
+                    Our support team is available 24/5 to answer your questions about forex trading
+                </p>
+            </div>
+            
+            <form class="contact-form max-w-3xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6 animate-on-scroll">
+                <input type="text" placeholder="Your Name" required
+                    class="p-4 rounded-xl bg-input-bg border border-color-border text-input-text placeholder-input-placeholder focus:ring-2 focus:ring-color-accent transition-all duration-200">
+                <input type="email" placeholder="Your Email" required
+                    class="p-4 rounded-xl bg-input-bg border border-color-border text-input-text placeholder-input-placeholder focus:ring-2 focus:ring-color-accent transition-all duration-200">
+                <input type="text" placeholder="Subject" class="md:col-span-2 p-4 rounded-xl bg-input-bg border border-color-border text-input-text placeholder-input-placeholder focus:ring-2 focus:ring-color-accent transition-all duration-200">
+                <textarea placeholder="Your Message" rows="6" required
+                    class="md:col-span-2 p-4 rounded-xl bg-input-bg border border-color-border text-input-text placeholder-input-placeholder focus:ring-2 focus:ring-color-accent transition-all duration-200 resize-y"></textarea>
+                <button type="submit" class="md:col-span-2 mx-auto px-10 py-4 rounded-full bg-gradient-button text-white font-bold text-xl transition-all duration-300 transform hover:-translate-y-1 shadow-lg hover:shadow-xl">
+                    Send Message
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-footer-bg text-footer-text py-16">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+                <div class="footer-col">
+                    <h3 class="text-2xl font-bold text-white mb-6">FXBusiness</h3>
+                    <p class="text-gray-400 leading-relaxed mb-6">Your trusted partner in professional forex trading and copy trading solutions.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 bg-gray-700 hover:bg-color-accent text-white rounded-full flex items-center justify-center text-lg transition-colors duration-200">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-gray-700 hover:bg-color-accent text-white rounded-full flex items-center justify-center text-lg transition-colors duration-200">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-gray-700 hover:bg-color-accent text-white rounded-full flex items-center justify-center text-lg transition-colors duration-200">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-gray-700 hover:bg-color-accent text-white rounded-full flex items-center justify-center text-lg transition-colors duration-200">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="footer-col">
+                    <h3 class="text-xl font-semibold text-white mb-6">Quick Links</h3>
+                    <ul class="space-y-3">
+                        <li><a href="#about" class="text-gray-400 hover:text-color-accent transition-colors duration-200 text-lg">About Forex</a></li>
+                        <li><a href="#requirements" class="text-gray-400 hover:text-color-accent transition-colors duration-200 text-lg">Requirements</a></li>
+                        <li><a href="#how-to-trade" class="text-gray-400 hover:text-color-accent transition-colors duration-200 text-lg">How to Trade</a></li>
+                        <li><a href="#copy-trading" class="text-gray-400 hover:text-color-accent transition-colors duration-200 text-lg">Copy Trading</a></li>
+                        <li><a href="#contact" class="text-gray-400 hover:text-color-accent transition-colors duration-200 text-lg">Contact Us</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3 class="text-xl font-semibold text-white mb-6">Education</h3>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-gray-400 hover:text-color-accent transition-colors duration-200 text-lg">Forex Basics</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-color-accent transition-colors duration-200 text-lg">Trading Strategies</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-color-accent transition-colors duration-200 text-lg">Market Analysis</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-color-accent transition-colors duration-200 text-lg">Risk Management</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-color-accent transition-colors duration-200 text-lg">Video Tutorials</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3 class="text-xl font-semibold text-white mb-6">Legal</h3>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-gray-400 hover:text-color-accent transition-colors duration-200 text-lg">Terms of Service</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-color-accent transition-colors duration-200 text-lg">Privacy Policy</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-color-accent transition-colors duration-200 text-lg">Risk Disclosure</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-color-accent transition-colors duration-200 text-lg">Affiliate Program</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright text-center pt-8 border-t border-gray-700 text-gray-500 text-sm">
+                <p>&copy; <span id="current-year"></span> FXBusiness. All rights reserved. Forex trading involves substantial risk of loss and is not suitable for all investors.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Set current year in footer
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+
+        // Animation on scroll functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const animateElements = document.querySelectorAll('.animate-on-scroll');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.1 }); // Trigger when 10% of the element is visible
+            
+            animateElements.forEach(element => {
+                observer.observe(element);
+            });
+            
+            // Smooth scrolling for navigation
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault(); // Prevent default anchor click behavior
+                    
+                    const targetId = this.getAttribute('href');
+                    let targetElement;
+
+                    // Handle '#' as href
+                    if (targetId === '#') {
+                        window.scrollTo({
+                            top: 0,
+                            behavior: 'smooth'
+                        });
+                        return;
+                    }
+                    
+                    targetElement = document.querySelector(targetId);
+
+                    if (targetElement) {
+                        // Calculate offset for fixed header
+                        const headerOffset = document.querySelector('header').offsetHeight;
+                        const elementPosition = targetElement.getBoundingClientRect().top + window.scrollY;
+                        const offsetPosition = elementPosition - headerOffset;
+
+                        window.scrollTo({
+                            top: offsetPosition,
+                            behavior: 'smooth'
+                        });
+                    }
+                    // Close mobile menu if open
+                    const mobileMenu = document.getElementById('mobile-menu');
+                    if (!mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                        document.body.style.overflow = ''; // Restore scrolling
+                    }
+                });
+            });
+
+            // Mobile menu functionality
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const closeMobileMenuButton = document.getElementById('close-mobile-menu');
+
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.remove('hidden');
+                document.body.style.overflow = 'hidden'; // Prevent scrolling when menu is open
+            });
+
+            closeMobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                document.body.style.overflow = ''; // Restore scrolling
+            });
+
+            // Accordion (Got Questions) functionality
+            document.querySelectorAll('.faq-question').forEach(question => {
+                question.addEventListener('click', () => {
+                    const answer = question.nextElementSibling; // Get the next sibling element (the answer)
+                    const icon = question.querySelector('.toggle-icon');
+
+                    // Toggle 'open' class on the question and icon
+                    question.classList.toggle('open');
+                    icon.classList.toggle('open');
+
+                    // Toggle 'open' class on the answer for animation
+                    answer.classList.toggle('open');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
