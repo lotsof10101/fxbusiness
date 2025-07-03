@@ -26,7 +26,7 @@
             --color-accent: #007aff; /* Apple Blue for accent */
             --color-bg: #1c1c1e; /* Deep dark gray for overall page background (similar to iOS dark mode) */
             --color-gray: #3a3a3c; /* Mid-tone gray for subtle divisions */
-            --color-white: #000000; /* True black where needed */
+            --color-white: #ffffff; /* True white where needed */
             --color-text-dark: #f2f2f7; /* Very light text for main headings */
             --color-text-light: #a0a0a8; /* Lighter gray for body text, slightly desaturated */
             --color-border: #48484a; /* Darker border for separation */
@@ -92,12 +92,12 @@
 
         /* Specific styles for subtle gradients often seen on modern sites */
         .bg-gradient-button {
-            background-image: linear-gradient(to right, var(--color-accent), #4a90e2); /* Adjusted gradient to be more Apple-like blue */
-            box-shadow: 0 4px 15px rgba(0, 122, 255, 0.4); /* Accent color shadow */
+            background-image: linear-gradient(to right, #6A11CB, #2575FC); /* Vibrant blue-purple gradient for Apple UI */
+            box-shadow: 0 4px 15px rgba(37, 117, 252, 0.4); /* Accent color shadow */
         }
         .bg-gradient-button:hover {
-            background-image: linear-gradient(to left, var(--color-accent), #4a90e2);
-            box-shadow: 0 6px 20px rgba(0, 122, 255, 0.6);
+            background-image: linear-gradient(to left, #6A11CB, #2575FC);
+            box-shadow: 0 6px 20px rgba(37, 117, 252, 0.6);
         }
         
         /* Hero Section Styling - Updated */
@@ -430,7 +430,7 @@
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                 <div class="card rounded-3xl shadow-custom overflow-hidden transition-all duration-300 hover:shadow-xl hover:scale-105 animate-on-scroll liquid-glass-element">
                     <div class="p-8">
-                        <div class="w-16 h-16 bg-indigo-700 text-white rounded-full flex items-center justify-center text-3xl mb-6">
+                        <div class="w-16 h-16 bg-gradient-to-br from-purple-600 to-blue-500 text-white rounded-full flex items-center justify-center text-3xl mb-6">
                             <i class="fas fa-money-bill-wave"></i>
                         </div>
                         <h3 class="text-2xl font-bold text-gray-100 mb-4">Currency Pairs</h3>
@@ -440,7 +440,7 @@
                 
                 <div class="card rounded-3xl shadow-custom overflow-hidden transition-all duration-300 hover:shadow-xl hover:scale-105 animate-on-scroll liquid-glass-element" style="transition-delay: 0.1s;">
                     <div class="p-8">
-                        <div class="w-16 h-16 bg-indigo-700 text-white rounded-full flex items-center justify-center text-3xl mb-6">
+                        <div class="w-16 h-16 bg-gradient-to-br from-green-600 to-cyan-500 text-white rounded-full flex items-center justify-center text-3xl mb-6">
                             <i class="fas fa-exchange-alt"></i>
                         </div>
                         <h3 class="text-2xl font-bold text-gray-100 mb-4">Market Liquidity</h3>
@@ -450,7 +450,7 @@
                 
                 <div class="card rounded-3xl shadow-custom overflow-hidden transition-all duration-300 hover:shadow-xl hover:scale-105 animate-on-scroll liquid-glass-element" style="transition-delay: 0.2s;">
                     <div class="p-8">
-                        <div class="w-16 h-16 bg-indigo-700 text-white rounded-full flex items-center justify-center text-3xl mb-6">
+                        <div class="w-16 h-16 bg-gradient-to-br from-yellow-600 to-orange-500 text-white rounded-full flex items-center justify-center text-3xl mb-6">
                             <i class="fas fa-clock"></i>
                         </div>
                         <h3 class="text-2xl font-bold text-gray-100 mb-4">24/5 Trading</h3>
@@ -460,7 +460,7 @@
                 
                 <div class="card rounded-3xl shadow-custom overflow-hidden transition-all duration-300 hover:shadow-xl hover:scale-105 animate-on-scroll liquid-glass-element" style="transition-delay: 0.3s;">
                     <div class="p-8">
-                        <div class="w-16 h-16 bg-indigo-700 text-white rounded-full flex items-center justify-center text-3xl mb-6">
+                        <div class="w-16 h-16 bg-gradient-to-br from-red-600 to-pink-500 text-white rounded-full flex items-center justify-center text-3xl mb-6">
                             <i class="fas fa-globe"></i>
                         </div>
                         <h3 class="text-2xl font-bold text-gray-100 mb-4">Global Market</h3>
@@ -483,7 +483,7 @@
                 
                 <div class="space-y-8">
                     <div class="step flex items-start space-x-4">
-                        <div class="w-12 h-12 bg-indigo-600 text-white rounded-full flex items-center justify-center text-xl font-bold flex-shrink-0 shadow-lg">1</div>
+                        <div class="w-12 h-12 bg-gradient-to-br from-purple-700 to-indigo-600 text-white rounded-full flex items-center justify-center text-xl font-bold flex-shrink-0 shadow-lg">1</div>
                         <div>
                             <!-- Heading order fixed: This is H3 -->
                             <h3 class="text-xl font-semibold text-gray-100 mb-2">Browse Top Traders</h3>
@@ -492,7 +492,7 @@
                     </div>
                     
                     <div class="step flex items-start space-x-4">
-                        <div class="w-12 h-12 bg-indigo-600 text-white rounded-full flex items-center justify-center text-xl font-bold flex-shrink-0 shadow-lg">2</div>
+                        <div class="w-12 h-12 bg-gradient-to-br from-green-700 to-emerald-600 text-white rounded-full flex items-center justify-center text-xl font-bold flex-shrink-0 shadow-lg">2</div>
                         <div>
                             <!-- Heading order fixed: This is H3 -->
                             <h3 class="text-xl font-semibold text-gray-100 mb-2">Allocate Funds</h3>
@@ -501,7 +501,7 @@
                     </div>
                     
                     <div class="step flex items-start space-x-4">
-                        <div class="w-12 h-12 bg-indigo-600 text-white rounded-full flex items-center justify-center text-xl font-bold flex-shrink-0 shadow-lg">3</div>
+                        <div class="w-12 h-12 bg-gradient-to-br from-yellow-700 to-orange-600 text-white rounded-full flex items-center justify-center text-xl font-bold flex-shrink-0 shadow-lg">3</div>
                         <div>
                             <!-- Heading order fixed: This is H3 -->
                             <h3 class="text-xl font-semibold text-gray-100 mb-2">Automate & Profit</h3>
@@ -576,7 +576,7 @@
                         "I started with just $500 and was able to grow my account by 27% in my first three months using FXBusiness's copy trading. The platform is incredibly user-friendly."
                     </p>
                     <div class="flex items-center space-x-4">
-                        <div class="w-14 h-14 bg-color-accent text-white rounded-full flex items-center justify-center text-xl font-bold">JD</div>
+                        <div class="w-14 h-14 bg-gradient-to-br from-blue-500 to-indigo-500 text-white rounded-full flex items-center justify-center text-xl font-bold">JD</div>
                         <div>
                             <!-- Accessibility: Changed h4 to p for proper heading hierarchy -->
                             <p class="text-lg font-semibold text-gray-100">James D.</p>
@@ -591,7 +591,7 @@
                         "As a full-time employee, I don't have time to trade actively. FXBusiness's copy trading lets me participate in forex markets passively while focusing on my career."
                     </p>
                     <div class="flex items-center space-x-4">
-                        <div class="w-14 h-14 bg-green-500 text-white rounded-full flex items-center justify-center text-xl font-bold">SM</div>
+                        <div class="w-14 h-14 bg-gradient-to-br from-teal-500 to-green-500 text-white rounded-full flex items-center justify-center text-xl font-bold">SM</div>
                         <div>
                             <!-- Accessibility: Changed h4 to p for proper heading hierarchy -->
                             <p class="text-lg font-semibold text-gray-100">Sarah M.</p>
@@ -606,7 +606,7 @@
                         "The educational resources combined with the copy trading platform helped me understand forex while earning. Now I trade independently but still use copy trading for diversification."
                     </p>
                     <div class="flex items-center space-x-4">
-                        <div class="w-14 h-14 bg-yellow-500 text-white rounded-full flex items-center justify-center text-xl font-bold">RK</div>
+                        <div class="w-14 h-14 bg-gradient-to-br from-orange-500 to-yellow-500 text-white rounded-full flex items-center justify-center text-xl font-bold">RK</div>
                         <div>
                             <!-- Accessibility: Changed h4 to p for proper heading hierarchy -->
                             <p class="text-lg font-semibold text-gray-100">Robert K.</p>
@@ -620,7 +620,7 @@
                         "FXBusiness has revolutionized my trading experience. The copy trading feature is a game-changer, allowing me to learn from the best without constant monitoring."
                     </p>
                     <div class="flex items-center space-x-4">
-                        <div class="w-14 h-14 bg-purple-500 text-white rounded-full flex items-center justify-center text-xl font-bold">AL</div>
+                        <div class="w-14 h-14 bg-gradient-to-br from-red-500 to-purple-500 text-white rounded-full flex items-center justify-center text-xl font-bold">AL</div>
                         <div>
                             <!-- Accessibility: Changed h4 to p for proper heading hierarchy -->
                             <p class="text-lg font-semibold text-gray-100">Alice L.</p>
@@ -634,7 +634,7 @@
                         "The platform is intuitive, and the support is exceptional. I highly recommend FXBusiness to anyone looking to get into forex trading or enhance their existing portfolio."
                     </p>
                     <div class="flex items-center space-x-4">
-                        <div class="w-14 h-14 bg-orange-500 text-white rounded-full flex items-center justify-center text-xl font-bold">MB</div>
+                        <div class="w-14 h-14 bg-gradient-to-br from-pink-500 to-red-500 text-white rounded-full flex items-center justify-center text-xl font-bold">MB</div>
                         <div>
                             <!-- Accessibility: Changed h4 to p for proper heading hierarchy -->
                             <p class="text-lg font-semibold text-gray-100">Michael B.</p>
@@ -659,7 +659,7 @@
             
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 text-center">
                 <div class="step-item animate-on-scroll">
-                    <div class="w-24 h-24 bg-color-accent text-white rounded-full flex items-center justify-center text-4xl mx-auto mb-6 shadow-md transition-all duration-300 hover:scale-110">
+                    <div class="w-24 h-24 bg-gradient-to-br from-blue-500 to-indigo-500 text-white rounded-full flex items-center justify-center text-4xl mx-auto mb-6 shadow-md transition-all duration-300 hover:scale-110">
                         <i class="fas fa-user-plus"></i>
                     </div>
                     <!-- Heading order fixed: This is H3 -->
@@ -668,7 +668,7 @@
                 </div>
                 
                 <div class="step-item animate-on-scroll" style="transition-delay: 0.1s;">
-                    <div class="w-24 h-24 bg-color-accent text-white rounded-full flex items-center justify-center text-4xl mx-auto mb-6 shadow-md transition-all duration-300 hover:scale-110">
+                    <div class="w-24 h-24 bg-gradient-to-br from-teal-500 to-green-500 text-white rounded-full flex items-center justify-center text-4xl mx-auto mb-6 shadow-md transition-all duration-300 hover:scale-110">
                         <i class="fas fa-wallet"></i>
                     </div>
                     <!-- Heading order fixed: This is H3 -->
@@ -677,7 +677,7 @@
                 </div>
                 
                 <div class="step-item animate-on-scroll" style="transition-delay: 0.2s;">
-                    <div class="w-24 h-24 bg-color-accent text-white rounded-full flex items-center justify-center text-4xl mx-auto mb-6 shadow-md transition-all duration-300 hover:scale-110">
+                    <div class="w-24 h-24 bg-gradient-to-br from-orange-500 to-yellow-500 text-white rounded-full flex items-center justify-center text-4xl mx-auto mb-6 shadow-md transition-all duration-300 hover:scale-110">
                         <i class="fas fa-chart-bar"></i>
                     </div>
                     <!-- Heading order fixed: This is H3 -->
@@ -686,7 +686,7 @@
                 </div>
                 
                 <div class="step-item animate-on-scroll" style="transition-delay: 0.3s;">
-                    <div class="w-24 h-24 bg-color-accent text-white rounded-full flex items-center justify-center text-4xl mx-auto mb-6 shadow-md transition-all duration-300 hover:scale-110">
+                    <div class="w-24 h-24 bg-gradient-to-br from-red-500 to-purple-500 text-white rounded-full flex items-center justify-center text-4xl mx-auto mb-6 shadow-md transition-all duration-300 hover:scale-110">
                         <i class="fas fa-trade"></i>
                     </div>
                     <!-- Heading order fixed: This is H3 -->
@@ -710,7 +710,7 @@
             
             <div class="max-w-3xl mx-auto space-y-6">
                 <div class="requirement p-6 rounded-3xl shadow-custom flex items-center space-x-6 transition-all duration-300 hover:shadow-lg hover:translate-x-2 animate-on-scroll liquid-glass-element">
-                    <div class="w-16 h-16 bg-color-accent text-white rounded-full flex items-center justify-center text-3xl flex-shrink-0">
+                    <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-indigo-500 text-white rounded-full flex items-center justify-center text-3xl flex-shrink-0">
                         <i class="fas fa-id-card"></i>
                     </div>
                     <div>
@@ -721,7 +721,7 @@
                 </div>
                 
                 <div class="requirement p-6 rounded-3xl shadow-custom flex items-center space-x-6 transition-all duration-300 hover:shadow-lg hover:translate-x-2 animate-on-scroll liquid-glass-element" style="transition-delay: 0.1s;">
-                    <div class="w-16 h-16 bg-color-accent text-white rounded-full flex items-center justify-center text-3xl flex-shrink-0">
+                    <div class="w-16 h-16 bg-gradient-to-br from-teal-500 to-green-500 text-white rounded-full flex items-center justify-center text-3xl flex-shrink-0">
                         <i class="fas fa-home"></i>
                     </div>
                     <div>
@@ -732,7 +732,7 @@
                 </div>
                 
                 <div class="requirement p-6 rounded-3xl shadow-custom flex items-center space-x-6 transition-all duration-300 hover:shadow-lg hover:translate-x-2 animate-on-scroll liquid-glass-element" style="transition-delay: 0.2s;">
-                    <div class="w-16 h-16 bg-color-accent text-white rounded-full flex items-center justify-center text-3xl flex-shrink-0">
+                    <div class="w-16 h-16 bg-gradient-to-br from-orange-500 to-yellow-500 text-white rounded-full flex items-center justify-center text-3xl flex-shrink-0">
                         <i class="fas fa-dollar-sign"></i>
                     </div>
                     <div>
@@ -743,7 +743,7 @@
                 </div>
                 
                 <div class="requirement p-6 rounded-3xl shadow-custom flex items-center space-x-6 transition-all duration-300 hover:shadow-lg hover:translate-x-2 animate-on-scroll liquid-glass-element" style="transition-delay: 0.3s;">
-                    <div class="w-16 h-16 bg-color-accent text-white rounded-full flex items-center justify-center text-3xl flex-shrink-0">
+                    <div class="w-16 h-16 bg-gradient-to-br from-red-500 to-purple-500 text-white rounded-full flex items-center justify-center text-3xl flex-shrink-0">
                         <i class="fas fa-laptop"></i>
                     </div>
                     <div>
